@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>
+        用户资料
+    </title>
+    <link type="text/css" rel="stylesheet" href="userData.css">
+</head>
+<body style="margin:0px">
+<div class="main">
+    <div class="title">
+        <span id="title_1" class="title_1">
+
+        </span>
+
+        <div id="close"></div>
+    </div>
+    <div class="nav">
+        <ul class="ch  fgt">
+            <li id="basicInformation" class="triangle" style="border-left:0;" href="#basicInfo">基本信息</li>
+            <div class="line"></div>
+            <li id="relatedContact" style="width: 71px;border-left:0;" href="#relevantContacts">相关联系人</li>
+            <div class="line"></div>
+            <li id="relatedEquipment" style="border-left:0;" href="#relevantEquipment">相关设备</li>
+            <div class="line"></div>
+            <li id="areaMaps" style="border-left:0;" href="#areaMap">防区图</li>
+            <div class="line"></div>
+            <li id="userZone" style="border-left:0;" href="#userZones">用户防区</li>
+            <div class="line"></div>
+            <li id="monitorPoint" style="width: 71px;border-right:0;" href="#monitorSite">用户监控点</li>
+            <div class="line"></div>
+            <li id="rdPlan" style="border-right:0;" href="#rdPlanSite">处警预案</li>
+            <div class="line"></div>
+            <!--<li id="historyRecord" style="border-right:0;" href="#historyRecordSite">历史记录</li>
+            <div class="line"></div>-->
+            <li id="historyEvent" style="border-right:0;" href="#historyEventSite">历史事件</li>
+        </ul>
+    </div>
+    <div>
+        <div style="width:1000px;height:430px;" id="basicInfo">
+            <div class="tab_1">
+                <div class="baseUserInfo_text">
+                    <div class="prompt1"><span class="notEmpty">*</span>用户编号</div>
+                    <div class="inputDiv">
+                        <input id="accountNum" type="text" readonly="readonly" class="input_1"/>
+                    </div>
+                    <div class="prompt1 prompt1_assist"><span class="notEmpty"></span>单位负责人</diV>
+                    <div class="inputDiv">
+                        <input id="contact" type="text" readonly="readonly" class="input_1"/>
+                    </div>
+                    <div class="prompt1 prompt1_assist"><span class="notEmpty"></span>负责人手机</div>
+                    <div class="inputDiv">
+                        <input id="cMobile" type="text" readonly="readonly" class="telephone"/>
+                    </div>
+                </div>
+                <div class="baseUserInfo_text">
+                    <div class="prompt1"><span class="notEmpty"></span>用户名称</div>
+                    <div class="inputDiv">
+                        <input id="accountName" type="text" readonly="readonly" class="input_8"/>
+                    </div>
+                    <div class="prompt1 prompt1_assist">用户级别</div>
+                   <!-- <div class="inputDiv">-->
+                        <input id="rdClass" type="text" readonly="readonly" class="telephone"/>
+                    <!--</div>-->
+                    <!--<div class="prompt1 prompt1_assist"><span class="notEmpty"></span>口令</div>
+                    <div class="inputDiv">
+                        <input id="cPayNO" type="text" readonly="readonly" class="telephone"/>
+                    </div>-->
+                </div>
+                <div class="baseUserInfo_text">
+                    <div class="prompt1">用户地址</div>
+                    <div class="inputDiv">
+                        <input id="accountAddr" type="text" readonly="readonly" class="input_8"/>
+                    </div>
+                    <div class="prompt1 prompt1_assist">联网电话</div>
+                    <input id="pnlTel" class="telephone" readonly="readonly"/>
+                </div>
+                <div class="baseUserInfo_text">
+                    <div class="prompt1"><span class="notEmpty"></span>用户类型</div>
+                    <div class="inputDiv">
+                        <input id="accountTypeName" type="text" readonly="readonly" class="input_1"/>
+                    </div>
+                    <div class="prompt1 prompt1_assist">用户行业</div>
+                    <div class="inputDiv">
+                        <input id="accountBusinessName" type="text" readonly="readonly" class="input_1"/>
+                    </div>
+                    <div class="prompt1 prompt1_assist"><span class="notEmpty">*</span>所属区域</div>
+                    <div class="inputDiv">
+                        <input id="areaName" type="text" readonly="readonly" class="telephone"/>
+                    </div>
+                </div>
+                <div class="baseUserInfo_text">
+                    <div class="prompt1"><span class="notEmpty"></span>服务类型</div>
+                    <div class="inputDiv">
+                        <input id="serverType" type="text" readonly="readonly" class="input_1"/>
+                    </div>
+                    <div class="prompt1 prompt1_assist">子行业</div>
+                    <div class="inputDiv">
+                        <input id="business_subName" type="text" readonly="readonly" class="input_1"/>
+                    </div>
+                    <div class="prompt1 prompt1_assist">所属平台</div>
+                    <div class="inputDiv">
+                        <input id="centerName" type="text" readonly="readonly" class="telephone"/>
+                    </div>
+                </div>
+                <div class="baseUserInfo_text">
+                    <div class="prompt1"><span class="notEmpty"></span>缴费状态</div>
+                    <div class="inputDiv">
+                        <input id="isPay" type="text" readonly="readonly" class="input_1"/>
+                    </div>
+                    <div class="prompt1 prompt1_assist"><span class="notEmpty"></span>录入时间</div>
+                    <div class="inputDiv">
+                        <input id="createDate" type="text" readonly="readonly" class="input_1"/>
+                    </div>
+                    <div class="prompt1 prompt1_assist">负责人电话</div>
+                    <div class="inputDiv">
+                        <input id="cPhone" type="text" readonly="readonly" class="telephone"/>
+                    </div>
+                </div>
+                <div class="baseUserInfo_text">
+                    <div class="prompt1"><span class="notEmpty"></span>短信转发</div>
+                    <div class="inputDiv">
+                        <input id="isVideoCheck" type="text" readonly="readonly" class="input_1"/>
+                    </div>
+                    <div class="prompt1 prompt1_assist">录入人</div>
+                    <div class="inputDiv">
+                        <input id="operName" type="text" readonly="readonly" class="input_1"/>
+                    </div>
+                    <div class="prompt1 prompt1_assist">无线卡号</div>
+                    <div class="inputDiv">
+                        <input id="wirelessTel" type="text" readonly="readonly" class="telephone"/>
+                    </div>
+                    <!--<div class="prompt1 prompt1_assist">无线卡号</div>
+                    <div  class="inputDiv">
+                        <input id="wirelessTel" type="text" readonly="readonly" class="telephone"/>
+                    </div>-->
+                </div>
+                <div class="baseUserInfo_text">
+                    <div class="prompt2"><span class="notEmpty"></span>定期撤布防用户</div>
+                    <div class="inputDiv">
+                        <input id="nomRpt" type="text" readonly="readonly" class="input_select2"/>
+                    </div>
+                    <div class="prompt2"><span class="notEmpty"></span>定期测试用户</div>
+                    <div class="inputDiv">
+                        <input id="engageTest" type="text" readonly="readonly" class="input_select3"/>
+                    </div>
+                    <div class="prompt1 prompt1_assist">道路标志</div>
+                    <div class="inputDiv">
+                        <input id="road" type="text" readonly="readonly" class="telephone"/>
+                    </div>
+                    <!--<div class="prompt1 prompt1_assist">无线卡号</div>
+                    <div  class="inputDiv">
+                        <input id="wirelessTel" type="text" readonly="readonly" class="telephone"/>
+                    </div>-->
+
+                </div>
+                <!--	<div class="baseUserInfo_text">
+
+                    </div>-->
+                <div class="baseUserInfo_text">
+                    <div class="prompt1" >备注</div>
+                    <div>
+                        <textarea id="fMemo" row="3" col="4" readonly="readonly" class="text_input_8"></textarea>
+                    </div>
+                    <!--<textarea id="fMemo" row="3" col="4" readonly="readonly" class="input_t"></textarea>-->
+                </div>
+            </div>
+
+        </div>
+        <div style="padding:10px;width:980px;height:520px;display:none" id="relevantContacts">
+            <div class="tab_content"
+                 style="border:1px solid #d9d9d9; width:100%;height:calc(100% - 10px);overflow-y:hidden;">
+                <table id="relevantContactTab" class="oe_f haveTitle" style="width:100%;">
+                    <thead class="thead">
+                    <tr>
+                        <th>联系人编号</th>
+                        <th>联系人名称</th>
+                        <th>联系人电话1</th>
+                        <th>联系人电话2</th>
+                        <th>家庭电话</th>
+                        <th>手机电话</th>
+                        <th >口令</th>
+                        <!-- <th>电子邮箱</th>
+                        <th>密码</th> -->
+                        <th>备注</th>
+                    </tr>
+                    </thead>
+                    <tbody id="contactsData">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div style="padding:10px;width:980px;height: 520px;display:none" id="relevantEquipment">
+            <div class="tab_content"
+                 style="border:1px solid #d9d9d9; width:100%;height:calc(100% - 10px);overflow-y:hidden;">
+                <table id="relevantEquipmentTab" class="oe_f haveTitle" style="width:100%;">
+                    <thead class="thead">
+                    <tr>
+                        <th>设备编号</th>
+                        <th>设备名称</th>
+                        <th>设备类型</th>
+                        <th>设备型号</th>
+                        <th>所属区域</th>
+                        <th>设备状态</th>
+                        <!-- <th>设备名称</th>
+                        <th>设备型号</th>
+                        <th>设备类型</th>
+                        <th>所在区域</th>
+                        <th>设备关联编号</th>
+                        <th>设备位置</th>
+                        <th>设备IP</th>
+                        <th>设备端口</th>
+                        <th>安装单位</th>
+                        <th>电源位置</th>
+                        <th>键盘位置</th>
+                        <th>联网电话</th>
+                        <th>电话位置</th>
+                        <th>安装员</th>
+                        <th>安装员码</th>
+                        <th>振铃调整</th>
+                        <th>无线卡号</th>
+                        <th>回控码</th>
+                        <th>备注</th> -->
+                    </tr>
+                    </thead>
+                    <tbody id="equipmentData" style="margin-top:32px;">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div style="padding:10px;width:980px;height: 520px;display:none" id="monitorSite">
+            <div class="tab_content"
+                 style="border:1px solid #d9d9d9; width:100%;height:calc(100% - 10px);overflow-y:hidden;">
+                <table id="monitorTab" class="oe_f" style="width:1500px;">
+                    <thead class="thead">
+                    <tr>
+                        <th>用户监控点编号</th>
+                        <th>监控点编号</th>
+                        <th>设备编号</th>
+                        <th>摄像机名称</th>
+                        <th>通道号</th>
+                        <th>摄像机位置</th>
+                        <th>安装时间</th>
+                        <th>警情类型</th>
+                        <th>反应类型</th>
+                        <th>摄像机类型</th>
+                        <th>摄像机型号</th>
+                        <th>备注</th>
+
+                    </tr>
+                    </thead>
+                    <tbody id="monitorData">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div style="padding:10px;width:980px;height: 520px;display:none" id="userZones">
+            <div class="tab_content" style="border:1px solid #d9d9d9;  width:100%;height:calc(100% - 10px);">
+                <table id="userZoneTab" class="oe_f haveTitle" style="width:1400px;">
+                    <thead class="thead">
+                    <tr>
+                        <th style="width: 110px">用户防区编号</th>
+                        <th style="width: 110px">设备编号</th>
+                        <th style="width: 110px">设备防区编号</th>
+                        <th style="width: 110px">探头型号</th>
+                        <th style="width: 110px">防区位置</th>
+                        <th style="width: 110px">反应类型</th>
+                        <th style="width: 110px">警情类型</th>
+                        <th style="width: 110px">探头数量</th>
+                        <th style="width: 110px">探头类型</th>
+                        <th style="width: 110px">安装时间</th>
+                        <th style="width: 110px;border-right: none">备注</th>
+                    </tr>
+                    </thead>
+                    <tbody id="uderzoneData">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!--<div style="width:792px;height:734px;display:none" id="areaMap">
+            <div class="areaImage" class="areaImage">
+
+            </div>
+        </div>-->
+        <div style="/*width:792px;height:734px;*/padding:10px;width:980px;height: 510px;display:none;" id="areaMap">
+            <select id="choosemap" class="pic"></select>
+            <div id="Map">
+                <!--<div id="areaImage" class="areaImage">
+
+                </div>-->
+            </div>
+            <div id="table" style="display:none;" class="table">
+                <div id=" " class="table_title">
+                    <div id="hotTitle_title" class=" hotTitle_title">热点标题</div>
+                    <div id="userId_title" class=" table_title_item">用户编号</div>
+                    <div id="roleZoneName_title" class=" table_title_item6">用户防区编号</div>
+                    <div id="devId_title" class=" table_title_item">设备编号</div>
+                    <div id="devZoneId_title" class=" table_title_item6">设备防区编号</div>
+                    <div id="isAlarm_title" class=" table_title_item_last">报警状态</div>
+                </div>
+                <div id="table_content" class="table_content">
+                </div>
+            </div>
+        </div>
+        <div style="padding:10px;width:980px;height:520px;display:none" id="rdPlanSite">
+            <div class="tab_content" style="border:1px solid #d9d9d9;width:100%;height:calc(100% - 10px);">
+                <table id="rdPlanTab" class="oe_f" style="width:100%;">
+                    <thead class="thead">
+                    <tr>
+                        <th>序号</th>
+                        <th>内容</th>
+                        <th>备注</th>
+                    </tr>
+                    </thead>
+                    <tbody id="rdPlanData">
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+        <div style="padding:10px;width:980px;height: 520px;display:none" id="historyRecordSite">
+            <div class="tab_content"
+                 style="border:1px solid #d9d9d9;width:100%;height:calc(100% - 10px);overflow-y:hidden;">
+                <table id="historyRecordTab" class="oe_f" style="width:100%;">
+                    <thead class="thead">
+                    <tr>
+                        <th>日期时间</th>
+                        <th>日志描述</th>
+                        <th>操作员名称</th>
+                        <th>操作员编号</th>
+
+                    </tr>
+                    </thead>
+                    <tbody id="historyRecordData">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div style="padding:10px;width:980px;height: 520px;display:none" id="historyEventSite">
+            <div class="tab_content"
+                 style="width:100%;height:calc(100% - 10px);overflow:hidden;">
+                <table id="search_tab" class="tab_1">
+                    <tbody>
+                    <tr>
+                        <td style="width:70px;">开始时间</td>
+                        <td>
+                            <input id="center_time_start_text" class="center_time_start_text">
+                        </td>
+                        <td style="width:70px;">结束时间</td>
+                        <td>
+                            <input id="center_time_end_text" class="center_time_end_text">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width:70px;">事件类型</td>
+                        <td title="">
+                            <select title="" class="selector" id="history_select" onchange="changeCodeType();"></select>
+                        </td>
+                        <td style="width:70px;">事件描述</td>
+                        <td>
+                            <select title="" class="selector" id="history_select_describ"></select>
+                        </td>
+                        <td>
+                            <div title="" id="search" class="btns btn1">查询</div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div style="border:1px solid #d9d9d9;width:100%;height:calc(100% - 125px);overflow-y:hidden;box-sizing: border-box;overflow-y: hidden;">
+                    <div  id="historyEventTab" class="right_div">
+                        <div id="historyEventTabright_div1" class="right_div1">
+                            <div id="historyEventTabright_divx" class="right_divx">
+                                <table id="historyEventTab1" class="table table-bordered">
+                                    <tr class="table_title">
+                                        <th width="100px">处理结果</th>
+                                        <th width="160px">日期时间</th>
+                                        <th width="80px">系统码</th>
+                                        <th width="100px">设备编号<span id="timePng" class="timePng"></span></th>
+                                        <th width="100px">事件类型</th>
+                                        <th width="160px">事件描述</th>
+                                        <th width="145px">设备防区编号</th>
+                                        <th width="100px">事件来源</th>
+                                        <th width="160px">用户防区编号</th>
+                                        <th width="160px">用户监控点编号</th>
+                                        <th width="100px">来电显示</th>
+                                        <th style="width:16px"></th>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div id="historyEventTabright_div2" class="right_div2">
+                            <table id="historyEventTab2"  class="oe_f">
+                                <tbody id="historyEventData" class="table_content">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div id="contentBottom" class="contentBottom">
+                    <div id="pageBox" class="pageBox"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="../../resource/js/jquery-1.8.0.min.js"></script>
+<script type="text/javascript" src="../../resource/js/colResizable-1.5.1.min.js"></script>
+<script type="text/javascript" src="../../resource/colResizable/colResizable-1.5.min.js"></script>
+<script type="text/javascript" src="../../resource/colResizable/colResizableNot-1.5.min.js"></script>
+<script type="text/javascript" src="../../tool/jquery-page-1.0.1/jquery-page-1.0.1.js"></script>
+<script type="text/javascript" src="../../resource/js/Image-View-1.0.js"></script>
+<script type="text/javascript" src="../../resource/js/jquery-ajax-expand.js"></script>
+<script type="text/javascript" src="../../resource/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="userData.js"></script>
+<script type="text/javascript" src="../../resource/js/image.js"></script>
+</body>
+</html>

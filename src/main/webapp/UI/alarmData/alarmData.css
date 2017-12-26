@@ -1,0 +1,693 @@
+* {
+    margin-top: 0px;
+    margin-left: 0px;
+    /*	float: left;*/
+    box-sizing: border-box;
+    font-family: "Microsoft YaHei";
+}
+
+body {
+    margin: 0px;
+    width: 100%;
+    padding: 10px;
+    height: 100%;
+    overflow-x: hidden;
+
+}
+
+.title {
+    width: 100%;
+    height: 33px;
+    float: left;
+
+}
+
+.title * {
+    float: left;
+}
+
+.title_left_img {
+    width: 5px;
+    height: 25px;
+    margin-left: 0px;
+    margin-top: 5px;
+    background-color: #f55638;
+}
+
+.title_left_text {
+    height: 33px;
+
+    margin-left: 10px;
+    font-size: 24px;
+    color: #323232;
+}
+
+.title_left_text2 {
+    height: 33px;
+
+    margin-left: 10px;
+    font-size: 24px;
+    color: #f55638;
+}
+.title_right {
+    height: 26px;
+    width: 82px;
+    margin-top: 3px;
+    float: right;
+    font-size: 12px;
+    color: #323232;
+    border: 1px solid #d9d9d9;
+    border-radius: 3px;
+}
+
+.linkVideo {
+    float: right;
+}
+
+.linkVideo:hover {
+    color: #78B5BB;
+    cursor: pointer;
+}
+
+.linkVideo_img {
+    margin-top: 3px;
+    margin-right: 5px;
+    width: 12px;
+    height: 12px;
+    background-image: url(../resource/images/rdPolice/uniteActionVideo.png);
+}
+
+.linkVideo_text {
+    margin-right: 25px;
+}
+
+.disposePolice {
+    float: right;
+    width: 79px;
+    margin-top: 3px;
+}
+
+.disposePolice:hover {
+    color: #E7421E;
+    cursor: pointer;
+}
+
+.disposePolice_img {
+    margin-top: 0px;
+    margin-right: 5px;
+    width: 15px;
+    height: 15px;
+    background-image: url(../resource/images/delete.png);
+}
+
+.disposePolice_text {
+    margin-right: 18px;
+}
+
+.preDispose {
+    float: right;
+    width: 79px;
+    margin-top: 3px;
+}
+
+.preDispose:hover {
+    color: #345281;
+    cursor: pointer;
+}
+
+.preDispose_img {
+    margin-top: 3px;
+    margin-right: 5px;
+    width: 12px;
+    height: 12px;
+    background-image: url(../resource/images/rdPolice/preDispose.png);
+}
+
+.preDispose_text {
+    margin-right: 14px;
+}
+
+.delete {
+    float: right;
+    margin-top: 3px;
+    width: 79px;
+}
+
+.delete:hover {
+    color: #FDB56E;
+    cursor: pointer;
+}
+
+.delete_img {
+    margin-top: 3px;
+    margin-right: 5px;
+    width: 12px;
+    height: 12px;
+    background-image: url(../resource/images/rdPolice/delete.png);
+}
+
+.delete_text {
+    margin-right: 18px;
+}
+
+.float_right {
+    float: right;
+}
+
+.content {
+    width: 100%;
+    height: calc(100% - 33px - 36px);
+    overflow: auto;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #323232;
+    overflow-x: auto;
+    border: 1px solid #ccc;
+    float: left;
+}
+
+.table {
+    width: 100%;
+    font-size: 14px;
+    color: #323232;
+
+}
+
+.table_title {
+    width: 100%;
+    height: 38px;
+    border-bottom: 1px solid #d9d9d9;
+    line-height: 38px;
+    background-color: #edeeee;
+
+}
+.state_title{
+    width: 120px;
+    overflow: hidden;
+    padding-left: 10px;
+    padding-right: 50px;
+    border-right: 1px solid #d9d9d9;
+}
+.table_title_item {
+    width: 100px;
+    overflow: hidden;
+    padding-left: 10px;
+    padding-right: 50px;
+    border-right: 1px solid #d9d9d9;
+}
+
+.eventNum_title {
+    width: 251px;
+    padding-left: 10px;
+    padding-right: 50px;
+    border-right: 1px solid #d9d9d9;
+}
+
+.zoneNum_title {
+    width: 170px;
+    padding-left: 10px;
+    padding-right: 50px;
+    border-right: 1px solid #d9d9d9;
+}
+
+.userName_title {
+    width: 234px;
+    padding-left: 10px;
+    padding-right: 50px;
+    border-right: 1px solid #d9d9d9;
+}
+
+.table_item_userName {
+    width: 234px;
+    height: 38px;
+    padding-left: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.table_content {
+    width: 100%;
+    height: calc(100% - 38px);
+    overflow-y: auto;
+}
+
+.table_row {
+    width: 100%;
+    height: 38px;
+    border-bottom: 1px solid #ccc;
+    line-height: 38px;
+}
+
+.table_row:hover {
+    background-color: #d5e5ff;
+}
+
+.table_content_item {
+    width: 100px;
+    padding-left: 20px;
+
+}
+
+.isChecked {
+    width: 15px;
+    height: 15px;
+    margin-right: 10px;
+    background-image: url(../resource/images/rdPolice/isChecked.png);
+    background-repeat: no-repeat;
+    display: inline-block;
+    position: relative;
+    top: 2px;
+    left: 15px;
+}
+
+.noChecked {
+    width: 15px;
+    height: 15px;
+    margin-right: 10px;
+    background-image: url(../resource/images/rdPolice/noChecked.png);
+    background-repeat: no-repeat;
+    display: inline-block;
+    position: relative;
+    top: 2px;
+    left: 15px;
+}
+
+.unableChecked{
+    width: 15px;
+    height: 15px;
+    margin-right: 10px;
+    background-image: url(../resource/images/rdPolice/unableChecked.png);
+    background-repeat: no-repeat;
+    display: inline-block;
+    position: relative;
+    top:2px;
+    left: 15px;
+}
+/*鍙抽敭寮圭獥*/
+.rightKey_contains {
+    position: absolute;
+    z-index: 101;
+    display: inline-block;
+    width: 168px;
+    height: 208px;
+    border-radius: 3px;
+    background-color: #FFF;
+    box-shadow: 2px 2px 5px #888888;
+
+}
+
+.rightKey_item {
+    width: 100%;
+    height: 26px;
+    line-height: 25px;
+    font-size: 14px;
+    color: #323232;
+    padding-left: 40px;
+    border-top: 1px solid #F0F0F1;
+    cursor: pointer;
+    -moz-user-select: none; /*鐏嫄*/
+    -webkit-user-select: none;
+    /*webkit娴忚鍣�/
+        -ms-user-select:none;/*IE10*/
+    user-select: none;
+}
+
+.rightKey_item:hover {
+    background-color: #345281;
+    color: #fff;
+}
+
+.rightKeyRelativeEvent {
+    border: 0px;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+}
+
+.table_item_2 {
+    width: 89px;
+    height: 38px;
+    padding-left: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.table_item_3 {
+    width: 103px;
+    height: 38px;
+    padding-left: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.table_item_4 {
+    width: 117px;
+    height: 38px;
+    padding-left: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.table_item_5 {
+    width: 131px;
+    height: 38px;
+    padding-left: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.table_item_long {
+    width: 251px;
+    height: 38px;
+    padding-left: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.table_item_zoneNum {
+    width: 170px;
+    height: 38px;
+    padding-left: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.table_content_state {
+    width: 69px;
+    padding-left: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.table_robber_state {
+    color: #f45733;
+}
+
+.contentBottom {
+    float: left;
+    width: -moz-calc(100%);
+    width: -webkit-calc(100%);
+    width: calc(100%);
+    height: 36px;
+    margin-top: 0px;
+    box-sizing: border-box;
+
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+
+}
+
+.lockState {
+    pointer-events: none;
+    opacity: 0.5
+}
+
+.inDeal {
+    color: red;
+}
+
+.userZone_title {
+    padding-left: 10px;
+    padding-right: 21px;
+    border-right: 1px solid #d9d9d9;
+}
+.eventDescribe_title{
+    width: 200px;
+    overflow: hidden;
+    padding-left: 10px;
+    padding-right: 50px;
+    border-right: 1px solid #d9d9d9;
+}
+.deviceZone_title {
+    padding-left: 10px;
+    padding-right: 21px;
+    border-right: 1px solid #d9d9d9;
+}
+
+.row_checked {
+    background-color: #d5e5ff;
+}
+
+.row_noChecked {
+
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 1px;
+    color: #323232;
+    table-layout: fixed;
+}
+
+th {
+    width: 110px;
+    text-align: left;
+    text-indent: 10px;
+    font-weight: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+tr td {
+    text-indent: 10px;
+}
+
+.title_right_line {
+    width: 1px;
+    height: 24px;
+    float: right;
+    border-right: 1px solid #d9d9d9;
+}
+
+.title_right_before {
+    float: right;
+    font-size: 14px;
+    height: 19px;
+    margin-right: 20px;
+    margin-top: 5px;
+}
+
+.round {
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.round_img {
+    width: 13px;
+    height: 14px;
+    margin-top: 3px;
+    margin-right: 10px;
+    background-image: url(./img/round.png);
+}
+
+.round:hover {
+    color: #345281;
+
+}
+
+.breakdown {
+    cursor: pointer;
+}
+
+.breakdown:hover {
+    color: #345281;
+
+}
+
+.breakdown_img {
+    width: 13px;
+    height: 14px;
+    margin-top: 4px;
+    margin-right: 10px;
+    background-image: url(./img/breakdown.png);
+}
+
+.float_window_container {
+    position: relative;
+    width: 0px;
+    height: 0px;
+    display: none;
+}
+
+.float_window {
+    position: absolute;
+    z-index: 6;
+    width: 266px;
+    height: 225px;
+    left: -37px;
+    top: 17px;
+    background-image: url(./img/float_window.png);
+    /* display: none;*/
+}
+
+.float_window_content {
+    width: 250px;
+    height: 200px;
+    margin-top: 15px;
+    margin-left: 7px;
+}
+
+.float_window_title {
+    width: calc(100% - 20px);
+    height: auto;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+.float_window_title_img {
+    width: 22px;
+    height: 21px;
+    background-image: url(./img/float_window_title_img.png);
+}
+
+.float_window_title_text {
+    margin-top: 1px;
+    margin-left: 10px;
+}
+
+.float_window_userNum {
+    width: calc(100% - 20px);
+    height: auto;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+.float_window_userNum_text {
+    line-height: 24px;
+}
+
+.float_window_userNum_input {
+    width: 164px;
+    height: 26px;
+    border: 1px solid #d9d9d9;
+    color: #999999;
+    margin-left: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+    line-height: 23px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.float_window_userName {
+    width: calc(100% - 20px);
+    height: auto;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 5px;
+}
+
+.float_window_userName_text {
+    line-height: 24px;
+
+}
+
+.float_window_userName_input {
+    width: 164px;
+    height: 26px;
+    border: 1px solid #d9d9d9;
+    color: #999999;
+    margin-left: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+    line-height: 23px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.float_window_notes {
+    width: calc(100% - 20px);
+    height: auto;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 5px;
+}
+
+.float_window_notes_text {
+    width: 56px;
+
+}
+
+.float_window_notes_input {
+    width: 164px;
+    height: 50px;
+    border: 1px solid #d9d9d9;
+
+    margin-left: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+    resize: none;
+
+}
+
+.float_window_button_ok {
+    width: 87px;
+    height: 28px;
+    border: 1px solid #335281;
+    background-color: #335281;
+    border-radius: 5px;
+    margin-right: 10px;
+    line-height: 25px;
+    text-align: center;
+    color: #fff;
+    cursor: pointer;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+}
+
+.float_window_button_ok:hover {
+    background-color: #4b6c9d;
+}
+
+.float_window_button_ok:active {
+    line-height: 26px;
+    background-color: #4b6c9d;
+}
+
+.float_window_button_cancel {
+    width: 87px;
+    height: 28px;
+    border: 1px solid #335281;
+    border-radius: 5px;
+    color: #335281;
+    line-height: 25px;
+    text-align: center;
+    cursor: pointer;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.float_window_button_cancel:hover {
+    background-color: #eaf2ff;
+}
+
+.float_window_button_cancel:active {
+    line-height: 26px;
+    background-color: #eaf2ff;
+}
+
+.float_window_button_container {
+    margin-left: 36px;
+    margin-top: 10px;
+
+}
+
+.noPoint {
+    pointer-events: none;
+    opacity: 0.5;
+}

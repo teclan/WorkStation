@@ -1,0 +1,177 @@
+﻿ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户基本信息</title>
+    <link href="userInfo.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="../../../../resource/js/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript" src="../../../../resource/js/jquery-ajax-expand.js"></script>
+    <script type="text/javascript" src="userInfo.js"></script>
+</head>
+<body>
+<div id="main" class="main">
+    <div id="title" class="title">
+        <div id="table" class="table">用户基本信息</div>
+        <div id="close" class="close"></div>
+    </div>
+    <div id="policeList_top">
+        <ul id="policeList_tab" class="fgt">
+            <li id="tab_specific" style="border-left:0;" data-show="#specific_content">基本信息</li>
+            <div class="line_part"></div>
+            <li id="tab_contact" style="border-right:0;" data-show="#contact_content">联系人</li>
+        </ul>
+
+    </div>
+    <div class="content">
+        <div id="specific_content"  style="display: none;">
+            <div class="a1">
+                <div>
+                    <div class="name star">用户编号</div>
+                    <div><input class="text-field" id="userId" type="text" readonly="readonly"></div>
+                </div>
+                <div>
+                    <div class="name-1 noStar">单位负责人</div>
+                    <div><input id="contact" class="text-field" type="text" readonly="readonly"></div>
+                </div>
+                <div>
+                    <div class="name-1 noStar">负责人手机</div>
+                    <div><input id="cMobile" class="text-field-1" type="text" readonly="readonly"></div>
+                </div>
+            </div>
+            <div class="a2">
+                <div>
+                    <div class="name noStar">用户名称</div>
+                    <div><input id="userName" class="text-field" type="text" readonly="readonly"></div>
+                </div>
+                <div>
+                    <div class="name-1 noStar">用户级别</div>
+                    <div><input id="rdClass" class="text-field" type="text" readonly="readonly"></input></div>
+                </div>
+                <div>
+                    <div class="name-1 noStar">口令</div>
+                    <div><input id="PayNO" class="text-field-1" type="text" readonly="readonly"></div>
+                </div>
+            </div>
+            <div class="a2">
+                <div class="name noStar">用户地址</div>
+                <div><input id="userAddr" class="text-field-2" type="text" readonly="readonly"></div>
+            </div>
+            <div class="a2">
+
+                <div>
+                    <div class="name noStar">用户类型</div>
+                    <div><input id="userType" class="text-field" type="text" readonly="readonly"></input></div>
+                </div>
+                <div>
+                    <div class="name-1 noStar">用户行业</div>
+                    <div><input id="businessName" class="text-field" type="text" readonly="readonly"></div>
+                </div>
+                <div>
+                    <div class="name-1 star">所属区域</div>
+                    <div><input id="areaName" class="text-field-1 " type="text" readonly="readonly"></input></div>
+                </div>
+
+            </div>
+            <div class="a2">
+
+                <div>
+                    <div class="name noStar">服务类型</div>
+                    <div><input id="serverType" class="text-field" type="text" readonly="readonly"></input></div>
+                </div>
+                <div>
+                    <div class="name-1 noStar">子行业</div>
+                    <div><input id="business_subName" class="text-field" type="text" readonly="readonly"></div>
+                </div>
+                <div>
+                    <div class="name-1 noStar">所属平台</div>
+                    <div><input id="centerName" class="text-field-1" type="text" readonly="readonly"></div>
+                </div>
+            </div>
+
+            <div class="a2">
+                <div>
+                    <div class="name noStar">缴费状态</div>
+                    <div><input id="isPay" class="text-field" type="text" readonly="readonly"></div>
+                </div>
+                <!--<div>
+                    <div class="name-1 star">录入时间</div>
+                    <div><input id="createDate" class="text-field" type="text" readonly="readonly"></div>
+                </div>-->
+                <div>
+                    <div class="name-1 noStar">录入时间</div>
+                    <div><input id="instDate" class="text-field" type="text" readonly="readonly"></div>
+                </div>
+                <div>
+                    <div class="name-1 noStar">负责人电话</div>
+                    <div><input id="cPhone" class="text-field-1" type="text" readonly="readonly"></div>
+                </div>
+
+            </div>
+            <div class="a2">
+                <div>
+                    <div class="name noStar">短信转发</div>
+                    <div><input id="isVideoCheck" class="text-field " type="text" readonly="readonly"></div>
+                </div>
+                <div>
+                    <div class="name-1 noStar">录入人</div>
+                    <div><input id="operName" class="text-field" type="text" readonly="readonly"></div>
+                </div>
+                <div>
+                    <div class="name-1 noStar">联网电话</div>
+                    <div><input id="pnlTel" class="text-field-1" type="text" readonly="readonly"></div>
+                </div>
+
+
+            </div>
+            <div class="a2">
+                <!--<div>
+                    <div class="name star">安装日期</div>
+                    <div><input id="instDate" class="text-field" type="text" readonly="readonly"></input></div>
+                </div>-->
+                <div>
+                    <div class="name-2 noStar">定期撤布防用户</div>
+                    <div><input id="nomRpt" class="text-field-3" type="text" readonly="readonly"></div>
+                </div>
+                <div>
+                    <div class="name-3 noStar">定期测试用户</div>
+                    <div><input id="engageTest" class="text-field-4" type="text" readonly="readonly"></input></div>
+                </div>
+                <div>
+                    <div class="name-1 noStar">无线卡号</div>
+                    <div><input id="pnlHdTel" class="text-field-1" type="text" readonly="readonly"></div>
+                </div>
+
+            </div>
+            <!--<div class="a2">
+                <div>
+                    <div class="name-2 star">定期撤布防用户</div>
+                    <div><input id="nomRpt" class="text-field-3" type="text" readonly="readonly"></div>
+                </div>
+
+            </div>-->
+            <div class="a2">
+                <div>
+                    <div class="name noStar">备注</div>
+                    <div><input id="fMemo" class="text-field-2" type="text" readonly="readonly"></div>
+                </div>
+
+            </div>
+        </div>
+        <div id="contact_content" style="display: none; ">
+            <div class="Row" style="background-color: #edeeee">
+                <div class="peoId split">联系人编号</div>
+                <div class="peoName split">联系人名称</div>
+                <!--<div class="peoTitle split">联系人口令</div>-->
+                <div class="telephone1 split">联系电话1</div>
+                <div class="telephone2 split">联系电话2</div>
+                <div class="familyPhone split">家庭电话</div>
+                <div class="mobilePhone split">手机电话</div>
+                <div class="remarks">备注</div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+</body>
+</html>

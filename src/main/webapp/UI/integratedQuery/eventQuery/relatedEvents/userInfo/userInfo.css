@@ -1,0 +1,321 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    font-size: 14px;
+    font-family: "Microsoft YaHei";
+}
+.main{
+    width: 1000px;
+    height: 360px;
+    border: none;
+}
+.title{
+    width: 1000px;
+    height: 30px;
+    background-color: #2a4977;
+
+}
+.table{
+    width: 98px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+    color: white;
+    margin-left: 20px;
+    text-align: left;
+    float: left;
+}
+.close{
+    float: right;
+    color: white;
+    background-image: url("./img/close.png");
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+.close:hover{
+    background-color: #f75352;
+}
+.a1{
+    height: 26px;
+    width: 960px;
+    margin: 20px 20px 8px;
+    border: none;
+}
+.a2{
+    height: 26px;
+    width: 960px;
+    margin: 8px auto;
+    border: none;
+}
+.name{
+    height: 26px;
+    width: 64px;
+    font-size: 14px;
+    line-height: 26px;
+    color: #323232;
+    float: left;
+    margin-right: 10px;
+    text-align: left;
+}
+.text-field{
+    width: 195px;
+    height: 24px;
+    border: 1px solid #d9d9d9;
+    float: left;
+    margin-right: 30px;
+    font-size: 14px;
+    font-family: '微软雅黑';
+    color: #898989;
+    padding-left: 10px;
+}
+.name-1{
+    height: 26px;
+    width: 79px;
+    font-size: 14px;
+    line-height: 26px;
+    color: #323232;
+    float: left;
+    margin-right: 10px;
+    text-align: left;
+}
+.name-2{
+    height: 26px;
+    width: 108px;
+    font-size: 14px;
+    line-height: 26px;
+    color: #323232;
+    float: left;
+    margin-right: 10px;
+    text-align: left;
+}
+.name-3{
+    height: 26px;
+    width: 93px;
+    font-size: 14px;
+    line-height: 26px;
+    color: #323232;
+    float: left;
+    margin-right: 10px;
+    text-align: left;
+}
+.text-field-1{
+    width: 214px;
+    height: 24px;
+    border: 1px solid #d9d9d9;
+    float: left;
+    font-size: 14px;
+    font-family: '微软雅黑';
+    color: #898989;
+    padding-left: 10px;
+}
+.text-field-2{
+    height: 24px;
+    width: 867px;
+    border: 1px solid #d9d9d9;
+    float: left;
+    font-size: 14px;
+    font-family: '微软雅黑';
+    color: #898989;
+    padding-left: 10px;
+}
+.text-field-3{
+    width: 152px;
+    height: 24px;
+    border: 1px solid #d9d9d9;
+    float: left;
+    margin-right: 30px;
+    font-size: 14px;
+    font-family: '微软雅黑';
+    color: #898989;
+    padding-left: 10px;
+}
+.text-field-4{
+    width: 181px;
+    height: 24px;
+    border: 1px solid #d9d9d9;
+    float: left;
+    margin-right: 30px;
+    font-size: 14px;
+    font-family: '微软雅黑';
+    color: #898989;
+    padding-left: 10px;
+}
+.pic{
+    background: url("./img/minus.gif") no-repeat right center;
+    background-position-x:98%;
+}
+.time{
+    background: url("./img/time.png") no-repeat right center;
+    background-position-x:98%;
+}
+#policeList_tab {
+    display: inline-block;
+    list-style-type: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    cursor: pointer;
+}
+#policeList_tab li {
+    color: black;
+    float: left;
+    width:auto;
+    height: 15px;
+    border:0;
+   /* border-left:1px solid #ffffff;
+    border-right:1px solid #dfdfdf;*/
+    margin: 11px 0;
+    padding: 0 15px 0 40px;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+}
+#policeList_tab li::before {
+
+    background-repeat: no-repeat;
+    width:14px;
+    height:15px;
+    content:'';
+    position:absolute;
+    display: block;
+    left: 20px;
+    top:2px;
+}
+li:hover {
+    color: #4b6c9d;
+}
+
+li:active {
+    color: #25406A;
+}
+
+
+#policeList_top{
+    height: 39px;
+    width:100%;
+    background-color: #edeeee;
+    border:0;
+    border-bottom:1px solid #d9d9d9;
+    font-size: 14px;
+}
+
+.line_part{
+    float: left;
+    height: 12px;
+    margin-top: 15px;
+    border-left:1px solid #dfdfdf;
+    border-right:1px solid #ffffff;
+}
+
+#tab_specific::before{
+    background-image: url("img/info.png");
+}
+#tab_contact::before{
+    background-image: url("img/person.png");
+}
+.triangle::after {
+    content: "";
+    border: 5px solid transparent;
+    border-bottom-color: white;
+    position: absolute;
+    left: 50%;
+    top: 19px;
+}
+#policeList_tab li:hover, #policeList_tab li:active, #policeList_tab li.triangle {
+    color: #345281;
+}
+li.triangle::before {
+    background-position: -14px;
+}
+.triangle::after {
+    content: "";
+    border: 5px solid transparent;
+    border-bottom-color: white;
+    position: absolute;
+    left: 50%;
+    top: 19px;
+}
+
+#contact_content{
+    border: 1px solid #ccc;
+    margin: 10px;
+    width: calc(100% - 20px);
+    height: 342px;
+    overflow-y: auto;
+}
+.Row{
+    width: 100%;
+    height: 30px;
+    border-bottom: 1px solid #d9d9d9;
+}
+.Row * {
+    float: left;
+}
+.split{
+    border-right: 1px solid #d9d9d9;
+}
+.peoId{
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    text-align: left;
+    color: #323232;
+    padding-left: 30px;
+    overflow:hidden;
+    text-overflow : ellipsis;
+    white-space: nowrap;
+}
+.peoName,.peoTitle,.telephone1,.telephone2,.familyPhone,.mobilePhone,.eMail,.remarks{
+    width: 106px;
+    height: 30px;
+    line-height: 30px;
+    text-align: left;
+    color: #323232;
+    padding-left: 10px;
+    overflow:hidden;
+    text-overflow : ellipsis;
+    white-space: nowrap;
+}
+.remarks{
+    width: 134px;
+    height: 30px;
+    line-height: 30px;
+    text-align: left;
+    color: #323232;
+    padding-left: 10px;
+    overflow:hidden;
+    text-overflow : ellipsis;
+    white-space: nowrap;
+}
+#print{
+    background:  url("png/print.png") no-repeat 0 3px;
+    width: 70px;
+    height: 20px;
+    padding-left: 25px;
+    /*margin-top: 10px;*/
+    color: #335281;
+    float: right;
+    cursor: pointer;
+    clear: both;
+    -webkit-user-select: none;  /* div���ְ�ť����ѡ��*/
+    -moz-user-select: none;  /* div���ְ�ť����ѡ��*/
+    -ms-user-select: none;  /* div���ְ�ť����ѡ��*/
+    -o-user-select: none;  /* div���ְ�ť����ѡ��*/
+    user-select: none; /* div���ְ�ť����ѡ��*/
+}
+
+.star:before{
+    content:"*";
+    color: red;
+
+}
+.noStar:before{
+    content:"*";
+    color: #fff;
+
+}
