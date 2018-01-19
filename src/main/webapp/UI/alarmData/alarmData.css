@@ -59,28 +59,43 @@ body {
     border: 1px solid #d9d9d9;
     border-radius: 3px;
 }
-
-.linkVideo {
+.title1_right {
+    height: 26px;
+    width: 124px;
+    margin-top: 3px;
     float: right;
+    font-size: 12px;
+    color: #323232;
+    border: 1px solid #d9d9d9;
+    border-radius: 3px;
+    margin-right: 10px;
 }
 
-.linkVideo:hover {
-    color: #78B5BB;
+.title_right:hover{
     cursor: pointer;
 }
 
-.linkVideo_img {
+.title1_right:hover{
+    cursor: pointer;
+}
+.disposePolice1_img {
     margin-top: 3px;
     margin-right: 5px;
     width: 12px;
     height: 12px;
-    background-image: url(../resource/images/rdPolice/uniteActionVideo.png);
+    background-image: url(../resource/images/rdPolice/数据更新.png);
 }
 
-.linkVideo_text {
-    margin-right: 25px;
+.disposePolice1 {
+    float: right;
+    width: 110px;
+    margin-top: 3px;
 }
 
+.disposePolice1:hover {
+    color: #E7421E;
+    cursor: pointer;
+}
 .disposePolice {
     float: right;
     width: 79px;

@@ -6,11 +6,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
@@ -26,9 +27,11 @@ public class EventDockServiceImp implements EventDockService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(EventDockServiceImp.class);
 	private static final SimpleDateFormat DATE_FORMATE = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-	@Resource
+	// @Resource
+	@Autowired
 	private EventDockDaoImp eventDockDaoImp;
 
+	@Override
 	@SuppressWarnings("unchecked")
 	public JSONObject pushOwners(JSONArray array) {
 
@@ -40,7 +43,7 @@ public class EventDockServiceImp implements EventDockService {
 
 			boolean pushed = false;
 
-			if(hasOwner) {
+			if (hasOwner) {
 				namesAndValues.remove("userId");
 				pushed = eventDockDaoImp.updateOwners(userId, namesAndValues);
 				LOGGER.info("用户`{}`，已存在，将将对该用户进行数据更新", userId);
@@ -55,6 +58,8 @@ public class EventDockServiceImp implements EventDockService {
 		return ResultUtil.simpleResponse("200", "推送成功");
 	}
 
+	@Transactional(propagation = Propagation.REQUIRES_NEW)
+	@Override
 	@SuppressWarnings("unchecked")
 	public JSONObject updateOwners(JSONArray array) {
 
@@ -76,8 +81,8 @@ public class EventDockServiceImp implements EventDockService {
 		JSONObject pageInfoP = object.getJSONObject("pageInfoPojo");
 		int pageSize = pageInfoP.getIntValue("pageSize");
 		int currPage = pageInfoP.getIntValue("currentPage");
-		String sort = Objects.isNullString(pageInfoP.getString("sort")) ? "ASC" : pageInfoP.getString("sort");
-
+		String sort = Objects.isNullString(pageInfoP.getString("sort")) ? "ASC"
+				: pageInfoP.getString("sort").contains("ASC") ? "ASC" : "DESC";
 
 		JSONObject queryTond = object.getJSONObject("queryTond");
 
@@ -93,10 +98,7 @@ public class EventDockServiceImp implements EventDockService {
 		String pnlHdTel = queryTond.getString("pnlHdTel");
 
 		Map<String, Object> map = eventDockDaoImp.ownerslist(userIds, userName, userAddr, areaName, contact, cPhone,
-				cMobile, pnlTel, pnlHdTel,
-				sort, pageSize, currPage - 1);
-
-
+				cMobile, pnlTel, pnlHdTel, sort, pageSize, currPage - 1);
 
 		return createResponse(currPage, pageSize, map);
 	}
@@ -105,13 +107,12 @@ public class EventDockServiceImp implements EventDockService {
 	@Override
 	public JSONObject pushAlarmEvent(JSONObject jsonObject) {
 
-
 		Map<String, Object> namesAndValues = (Map<String, Object>) JSON.parse(jsonObject.toJSONString());
 
 		namesAndValues.put("recieiveTime", DATE_FORMATE.format(new Date()));
-		
-		String eventNum = namesAndValues.get("eventNum")==null?null:namesAndValues.get("eventNum").toString();
-		
+
+		String eventNum = namesAndValues.get("eventNum") == null ? null : namesAndValues.get("eventNum").toString();
+
 		if (Objects.isNullString(eventNum)) {
 			LOGGER.error("报警信息中缺失事件编号,推送失败:{}", jsonObject);
 			return ResultUtil.simpleResponse("500", "推送失败");
@@ -122,7 +123,7 @@ public class EventDockServiceImp implements EventDockService {
 			LOGGER.info("报警 {} 已存在，推送成功...", eventNum);
 			return ResultUtil.simpleResponse("200", "推送成功");
 		}
-		
+
 		boolean added = eventDockDaoImp.pushAlarmEvent(namesAndValues);
 
 		if (added) {
@@ -209,6 +210,7 @@ public class EventDockServiceImp implements EventDockService {
 		}
 	}
 
+	@Override
 	public List<String> getAllOwnerId() {
 		return eventDockDaoImp.getAllOwnerId();
 	}
@@ -243,7 +245,22 @@ public class EventDockServiceImp implements EventDockService {
 		return Userjosn;
 	}
 
+	@Transactional(propagation = Propagation.REQUIRES_NEW)
+	@Override
+	public JSONObject updateEvent(JSONArray array) {
 
+		// for (int i = 0; i < array.size(); ) {
+		// String eventNum = ((JSONObject) array.get(i)).getString("eventNum");
+		// if (eventDockDaoImp.hasAlarmEvent(eventNum)) {
+		// LOGGER.info("事件 `{}` 已存在 ...", eventNum);
+		// array.remove(i);
+		// }else {
+		// i++;
+		// }
+		// }
 
+		eventDockDaoImp.updateEvent(array);
 
+		return ResultUtil.simpleResponse("200", "更新完成");
+	}
 }

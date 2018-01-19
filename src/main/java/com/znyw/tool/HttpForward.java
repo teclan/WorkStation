@@ -1,9 +1,5 @@
 package com.znyw.tool;
 
-
-
-
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -34,7 +30,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 
-
 public class HttpForward {
 	private final static Logger log = LoggerFactory.getLogger(HttpTool.class);
 
@@ -47,7 +42,6 @@ public class HttpForward {
 	// private static String LOG_SERVER_URL =
 	// propertyconfigUtil.getValue("LOG_SERVER_URL");
 	private static String abutmentServerUrl = propertyconfigUtil.getValue("abutmentServer");
-
 
 	private static boolean bFirst = true;
 
@@ -210,13 +204,13 @@ public class HttpForward {
 		String method = request.getMethod();
 		if (method == "GET") {
 			// return request.getQueryString();
-			String cs="";
-			if(request.getQueryString()!=null){
-			    try {
-			    	cs=URLDecoder.decode(request.getQueryString(),"utf-8");//将中文转码
-			    } catch (UnsupportedEncodingException e) {
+			String cs = "";
+			if (request.getQueryString() != null) {
+				try {
+					cs = URLDecoder.decode(request.getQueryString(), "utf-8");// 将中文转码
+				} catch (UnsupportedEncodingException e) {
 					System.out.println(e.toString());
-			    }
+				}
 			}
 			return cs;
 		} else {
@@ -233,7 +227,7 @@ public class HttpForward {
 			return json.toString();
 		}
 	}
-	
+
 	public static ResponseEntity<String> GetResponseEntity(String result) {
 		HttpHeaders responseHeaders = new HttpHeaders();
 		MediaType mediaType = new MediaType("text", "html", Charset.forName("UTF-8"));

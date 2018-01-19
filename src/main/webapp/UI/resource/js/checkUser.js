@@ -5,13 +5,16 @@ function checkUser(callback) {
     //验证cookies是否存在
     var userName = $.cookie("userName");
     if($.cookie("userName")&&userName!=""&&userName!=null){
-        //获取cookie值
+        if(typeof (callback) == "function"){
+            callback();
+        }
+        /*//获取cookie值
         var strcookie = {
             userName:$.cookie("userName"),
             password:$.cookie("password")
         };
         //获取当前登录账号
-        post_async(strcookie,"/WorkStation/login.do",_callback_judgeUser,callback)
+        post_async(strcookie,"/WorkStation/login.do",_callback_judgeUser,callback)*/
     }else {
         location.href = "/WorkStation/UI/login/login.html"//跳转到登录界面
     }

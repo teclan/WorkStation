@@ -26,6 +26,7 @@ $(function() {
 	var _global = {
 		eventNumlist: [],
 		top:parent,
+		flag:0,
 	};
 
 	init();
@@ -75,16 +76,6 @@ $(function() {
 			$("#history_select_describ").html("");
 			getEventDesc(_global.history_eventsType);
 
-		}
-		if(href == "#con_untreated") {
-			$("#untreat_eventType option[value='" + _global.untreat_eventsType + "']").attr("selected", true);
-			$("#untreat_select_describ").html("");
-			getEventDesc_untreat(_global.untreat_eventsType);
-			$("#untreat_select_describ option").each(function(i, n) {
-				if($(n).text() == _global.untreated_eventsDesc) {
-					$(n).attr("selected", true);
-				}
-			})
 		}
 	});
 	/************************************************
@@ -279,13 +270,25 @@ $(function() {
          升降序的切换222
          ************************************************/
         $("#history_contentTab1 tr th:eq(3)").click(function(){
-            $("#timePng").toggleClass("timePngchange");
-            var sort="";
-            if($("#timePng").hasClass("timePngchange")){
-                sort = "DESC";
-            }else {
-                sort = "ASC";
-            }
+			_global.flag +=1;
+			var tmp = _global.flag%3;
+			console.log("tmp:"+tmp);
+			if(tmp == 1){
+				$("#timePng").removeClass("timePngchange2").addClass("timePngchange");
+			}
+			else if(tmp == 2){
+				$("#timePng").removeClass("timePngchange").addClass("timePngchange2");
+			}else if(tmp == 0){
+				$("#timePng").removeClass("timePngchange").removeClass("timePngchange2");
+			}
+			var sort="";
+			if($("#timePng").hasClass("timePngchange")){
+				sort = "devId|DESC,eventTime|DESC";
+			}else if($("#timePng").hasClass("timePngchange2")){
+				sort = "devId|ASC,eventTime|ASC";
+			}else {
+				sort = "eventTime|DESC";
+			}
             var history_startTime = $("#center_time_start_text").val().replace(" ", "T");
             var history_endTime = $("#center_time_end_text").val().replace(" ", "T");
             var history_eventTime = history_startTime + ";" + history_endTime;
@@ -296,7 +299,7 @@ $(function() {
 					"sysCode":"", // 系统码
 					"accountNum":accountNum, // 机主编号
 					"accountName":"", // 机主名称
-					"handleStatus":"已处理", // 处理状态（未处理，已处理)
+					"handleStatus":"", // 处理状态（未处理，已处理)
 					"handleResult":"", // 处理结果（确认警情，误报，移去）
 					"handleDesc":"", // 处理结果说明
 					"handleTime":"" // 处理时间
@@ -327,14 +330,14 @@ $(function() {
 			"sysCode":"", // 系统码
 			"accountNum":accountNum, // 机主编号
 			"accountName":"", // 机主名称
-			"handleStatus":"已处理", // 处理状态（未处理，已处理)
+			"handleStatus":"", // 处理状态（未处理，已处理)
 			"handleResult":"", // 处理结果（确认警情，误报，移去）
 			"handleDesc":"", // 处理结果说明
 			"handleTime":"" // 处理时间
 		},
 		pageInfoPojo:{
 			currentPage:1,
-			sort:"DESC",
+			sort:"eventTime|DESC",
 			pageSize:10
 		}
 	};
@@ -357,14 +360,23 @@ $(function() {
 		var history_codeId = $("#history_select_describ option:selected").val();
 		_global.history_eventsType = history_eventType;
 		_global.history_codeId = history_codeId;
+		var sort="";
+		var sort="";
+		if($("#timePng").hasClass("timePngchange")){
+			sort = "devId|DESC,eventTime|DESC";
+		}else if($("#timePng").hasClass("timePngchange2")){
+			sort = "devId|ASC,eventTime|ASC";
+		}else {
+			sort = "eventTime|DESC";
+		}
 		var history_searchJson = {
 			queryTond:{
 				"eventNum":"", //事件编号,为空（null 或者 “”）将忽略该条件，下方字段也是如此
-				"eventTime":history_eventTime, // 事件发生时间
+				"eventTime":history_searchTime, // 事件发生时间
 				"sysCode":"", // 系统码
 				"accountNum":accountNum, // 机主编号
 				"accountName":"", // 机主名称
-				"handleStatus":"已处理", // 处理状态（未处理，已处理)
+				"handleStatus":"", // 处理状态（未处理，已处理)
 				"handleResult":"", // 处理结果（确认警情，误报，移去）
 				"handleDesc":"", // 处理结果说明
 				"handleTime":"", // 处理时间
@@ -373,7 +385,7 @@ $(function() {
 			},
 			pageInfoPojo:{
 				currentPage:1,
-				sort:"DESC",
+				sort:sort,
 				pageSize:10
 			}
 		}
@@ -393,14 +405,22 @@ $(function() {
         var history_codeId = $("#history_select_describ option:selected").val();
         _global.history_eventsType = history_eventType;
         _global.history_codeId = history_codeId;
+		var sort="";
+		if($("#timePng").hasClass("timePngchange")){
+			sort = "devId|DESC,eventTime|DESC";
+		}else if($("#timePng").hasClass("timePngchange2")){
+			sort = "devId|ASC,eventTime|ASC";
+		}else {
+			sort = "eventTime|DESC";
+		}
         var history_searchJson = {
 			queryTond:{
 				"eventNum":"", //事件编号,为空（null 或者 “”）将忽略该条件，下方字段也是如此
-				"eventTime":history_eventTime, // 事件发生时间
+				"eventTime":history_searchTime, // 事件发生时间
 				"sysCode":"", // 系统码
 				"accountNum":accountNum, // 机主编号
 				"accountName":"", // 机主名称
-				"handleStatus":"已处理", // 处理状态（未处理，已处理)
+				"handleStatus":"", // 处理状态（未处理，已处理)
 				"handleResult":"", // 处理结果（确认警情，误报，移去）
 				"handleDesc":"", // 处理结果说明
 				"handleTime":"", // 处理时间
@@ -409,7 +429,7 @@ $(function() {
 			},
 			pageInfoPojo:{
 				currentPage:1,
-				sort:"DESC",
+				sort:sort,
 				pageSize:10
 			}
         };
@@ -721,7 +741,7 @@ function basicInformation_callback(data) {
 	$("#cPhone").val(data.userInformation.cPhone);
 	$("#fMemo").val(data.userInformation.fMemo);
 	$("#InternetTel").val(data.userInformation.pnlTel);
-	$("#wirelessTel").val(data.userInformation.pnlHdTel);
+	$("#pnlHdTel").val(data.userInformation.pnlHdTel);
 	$("#cPayNO").val(data.userInformation.payNO);
 	$("#pnlTel").val(data.userInformation.pnlTel);
 	addInputTitle();
@@ -1142,10 +1162,6 @@ function getEventType(typeId) {
 		$("#rdPlan").bind('click', function() {
 			_getRdPlan();
 		});
-		//点击历史记录标签
-		$("#historyRecord").bind('click', function() {
-			_getHistoryRecord();
-		});
 		//切换防区图
 		$("#choosemap").on("change",function () {
             var mapval = $("#choosemap").val();
@@ -1497,29 +1513,6 @@ function getEventType(typeId) {
 		var result = data.result;
 		if(result.code == '0') {
 			_global.userZonePojo = data.zonePojo;
-            _showZone();
-		}
-	}
-
-	function _getUserZoneIsAlarmParams() {
-		var params = {};
-		params.userZonePojo = _global.userZonePojo;
-		return params;
-	}
-
-	function _getUserZoneIsAlarm() {
-		var params = _getUserZoneIsAlarmParams();
-		post_async(params, _config.ajaxUrl.getUserZoneIsAlarmUrl, _callback_getUserZoneIsAlarm);
-	}
-
-	function _callback_getUserZoneIsAlarm(data) {
-		var result = data.result;
-		if(result.code == 0) {
-			_global.userZonePojo = data.userZonePojo;
-			_clearRow();
-			for(var i=0;i<data.userZonePojo.length;i++){
-                _AddTableRow(_global.userZonePojo[i]);
-			}
 		}
 	}
 	function _gotocreateIcon(isShow) {
@@ -1530,55 +1523,17 @@ function getEventType(typeId) {
                     continue;
                 }
                 if ($(pathId).data('isOk') == 1) {
-                    if (_global.userZonePojo[i].isAlert == 1) {
-                        _createAlarmIcon(_global.userZonePojo[i].x, _global.userZonePojo[i].y, _global.userZonePojo[i].ownerZoneName, $(pathId), _global.userZonePojo[i]);
-                    } else {
-                        _createIcon(_global.userZonePojo[i].x, _global.userZonePojo[i].y, _global.userZonePojo[i].ownerZoneName, $(pathId), _global.userZonePojo[i]);
-                    }
+					if(_global.jsonData.accountZone==_global.userZonePojo[i].ownerZoneName){
+						_createAlarmIcon(_global.userZonePojo[i].x, _global.userZonePojo[i].y, _global.userZonePojo[i].ownerZoneName, $(pathId), _global.userZonePojo[i]);
+
+					}else {
+						_createIcon(_global.userZonePojo[i].x, _global.userZonePojo[i].y, _global.userZonePojo[i].ownerZoneName, $(pathId), _global.userZonePojo[i]);
+					}
                 }
 
             }
         }
     }
-
-	function _AddTableRow(row_json) {
-
-		var $div_row = $("<div></div>");
-		var $div_ownerZoneName = $("<div></div>");
-		var $div_atPos = $("<div></div>");
-		var $div_snType = $("<div></div>");
-		var $div_isAlarm = $("<div></div>");
-		$div_row
-			.append($div_ownerZoneName)
-			.append($div_atPos)
-			.append($div_snType)
-			.append($div_isAlarm)
-			.addClass('table_row');
-		var isAlert='';
-		if(row_json.isAlert == '1') {
-			isAlert = '有';
-			$div_isAlarm.css('color', '#d44027');
-		} else {
-			isAlert = '无';
-		}
-		$div_ownerZoneName.addClass('table_item_6').text(row_json.ownerZoneName).attr("title", row_json.ownerZoneName);
-		$div_atPos.addClass('table_item_4').text(row_json.atPos).attr("title", row_json.atPos);
-		var snTypeName = row_json.snTypeName;
-		if(snTypeName ==""||snTypeName ==null){snTypeName = row_json.snType}
-		$div_snType.addClass('table_item_6').text(snTypeName).attr("title", snTypeName);
-		$div_isAlarm.addClass('table_item_4').text(isAlert).attr("title", isAlert);
-		$("#table_content").append($div_row);
-	}
-
-	function _clearRow() {
-		$("#table_content").children(".table_row").remove();
-	}
-
-	function _showZone() {
-		_getUserZoneIsAlarm();
-	}
-
-
 	function _createIcon(posX, posY, index, $img_center, jsonData) {
         if($('#zone'+jsonData.ownerZoneName).length == 1){
             return;

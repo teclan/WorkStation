@@ -557,8 +557,8 @@ function addInputTitle() {
 		jsonData: '',
 		isUserZoneShow: false,
 		mapPath: "",
-        pathId:""
-
+        pathId:"",
+		flag:0,
 	};
 
 	function _init() {
@@ -597,13 +597,25 @@ function addInputTitle() {
          升降序的切换222
          ************************************************/
         $("#historyEventTab1 tr th:eq(3)").click(function(){
-            $("#timePng").toggleClass("timePngchange");
-            var sort="";
-            if($("#timePng").hasClass("timePngchange")){
-                sort = "devId|DESC";
-            }else {
-                sort = "devId|ASC";
-            }
+			_global.flag +=1;
+			var tmp = _global.flag%3;
+			console.log("tmp:"+tmp);
+			if(tmp == 1){
+				$("#timePng").removeClass("timePngchange2").addClass("timePngchange");
+			}
+			else if(tmp == 2){
+				$("#timePng").removeClass("timePngchange").addClass("timePngchange2");
+			}else if(tmp == 0){
+				$("#timePng").removeClass("timePngchange").removeClass("timePngchange2");
+			}
+			var sort="";
+			if($("#timePng").hasClass("timePngchange")){
+				sort = "devId|DESC,eventTime|DESC";
+			}else if($("#timePng").hasClass("timePngchange2")){
+				sort = "devId|ASC,eventTime|ASC";
+			}else {
+				sort = "eventTime|DESC";
+			}
             var history_search_startTime = $("#center_time_start_text").val().replace(" ", "T");
             var history_search_endTime = $("#center_time_end_text").val().replace(" ", "T");
             var history_searchTime = history_search_startTime + ";" + history_search_endTime;
@@ -612,11 +624,19 @@ function addInputTitle() {
             _global.history_eventsType = history_eventType;
             _global.history_codeId = history_codeId;
             var history_searchJson = {
-                "eventTime": history_searchTime,
-                "userId": accountNum,
-                "disposeStatus": "",
-                "codeTypeId": history_eventType,
-                "codeId": history_codeId,
+				queryTond:{
+					"eventNum":"", //事件编号,为空（null 或者 “”）将忽略该条件，下方字段也是如此
+					"eventTime":history_searchTime, // 事件发生时间
+					"sysCode":"", // 系统码
+					"accountNum":accountNum, // 机主编号
+					"accountName":"", // 机主名称
+					"handleStatus":"", // 处理状态（未处理，已处理)
+					"handleResult":"", // 处理结果（确认警情，误报，移去）
+					"handleDesc":"", // 处理结果说明
+					"handleTime":"", // 处理时间
+					"codeTypeId":history_eventType,
+					"eventDesc":history_codeId,
+				},
                 pageInfoPojo:{
                     currentPage:1,
                     sort:sort,
@@ -625,7 +645,7 @@ function addInputTitle() {
             };
             post_async(
                 history_searchJson,
-                "../../../ownerEventPage.do",
+				"/WorkStation/query/alarmEventslist.do",
                 historyEvent_callback);
         });
         /************************************************
@@ -655,21 +675,38 @@ function addInputTitle() {
 			var history_codeId = $("#history_select_describ option:selected").val();
 			_global.history_eventsType = history_eventType;
 			_global.history_codeId = history_codeId;
+
+			var sort="";
+			if($("#timePng").hasClass("timePngchange")){
+				sort = "devId|DESC,eventTime|DESC";
+			}else if($("#timePng").hasClass("timePngchange2")){
+				sort = "devId|ASC,eventTime|ASC";
+			}else {
+				sort = "eventTime|DESC";
+			}
 			var history_searchJson = {
-				"eventTime": history_searchTime,
-				"userId": accountNum,
-				"disposeStatus": "",
-				"codeTypeId": history_eventType,
-				"codeId": history_codeId,
-                pageInfoPojo:{
-                    currentPage:1,
-                    sort:"eventTime|DESC",
-                    pageSize:10
-                }
+				queryTond:{
+					"eventNum":"", //事件编号,为空（null 或者 “”）将忽略该条件，下方字段也是如此
+					"eventTime":history_searchTime, // 事件发生时间
+					"sysCode":"", // 系统码
+					"accountNum":accountNum, // 机主编号
+					"accountName":"", // 机主名称
+					"handleStatus":"", // 处理状态（未处理，已处理)
+					"handleResult":"", // 处理结果（确认警情，误报，移去）
+					"handleDesc":"", // 处理结果说明
+					"handleTime":"", // 处理时间
+					"codeTypeId":history_eventType,
+					"eventDesc":history_codeId,
+				},
+				pageInfoPojo:{
+					currentPage:1,
+					sort:sort,
+					pageSize:10
+				}
 			};
 			post_async(
 				history_searchJson,
-				"../../../ownerEventPage.do",
+				"/WorkStation/query/alarmEventslist.do",
 				historyEvent_callback);
 		});
 		$("#historyEvent").data('click',"");
@@ -696,22 +733,39 @@ function addInputTitle() {
         var history_codeId = $("#history_select_describ option:selected").val();
         _global.history_eventsType = history_eventType;
         _global.history_codeId = history_codeId;
-        var history_searchJson = {
-            "eventTime": history_searchTime,
-            "userId": accountNum,
-            "disposeStatus": "",
-            "codeTypeId": history_eventType,
-            "codeId": history_codeId,
-            pageInfoPojo:{
-                currentPage:1,
-                sort:"eventTime|DESC",
-                pageSize:10
-            }
-        };
-        history_searchJson.pageInfoPojo.currentPage = page;
-        post_async(
-            history_searchJson,
-            "../../../ownerEventPage.do",
+
+		var sort="";
+		if($("#timePng").hasClass("timePngchange")){
+			sort = "devId|DESC,eventTime|DESC";
+		}else if($("#timePng").hasClass("timePngchange2")){
+			sort = "devId|ASC,eventTime|ASC";
+		}else {
+			sort = "eventTime|DESC";
+		}
+		var history_searchJson = {
+			queryTond:{
+				"eventNum":"", //事件编号,为空（null 或者 “”）将忽略该条件，下方字段也是如此
+				"eventTime":history_searchTime, // 事件发生时间
+				"sysCode":"", // 系统码
+				"accountNum":accountNum, // 机主编号
+				"accountName":"", // 机主名称
+				"handleStatus":"", // 处理状态（未处理，已处理)
+				"handleResult":"", // 处理结果（确认警情，误报，移去）
+				"handleDesc":"", // 处理结果说明
+				"handleTime":"", // 处理时间
+				"codeTypeId":history_eventType,
+				"eventDesc":history_codeId,
+			},
+			pageInfoPojo:{
+				currentPage:1,
+				sort:sort,
+				pageSize:10
+			}
+		};
+		history_searchJson.pageInfoPojo.currentPage = page;
+		post_async(
+			history_searchJson,
+			"/WorkStation/query/alarmEventslist.do",
             historyEvent_callback);
     }
 
@@ -720,21 +774,16 @@ function addInputTitle() {
 	 ************************************************/
 	function historyEvent_callback(data) {
 		var innerHtml = "";
-		var alertPojo = data.alertPojo;
+		var alertPojo = data.json;
 		var resolveState = "";
-        var totalPage = data.pageInfo.totalPage;
-        var currentPage = data.pageInfo.currentPage;
-        var totalNum = data.pageInfo.totalNum;
+        var totalPage = data.pageInfoPojo.totalPage;
+        var currentPage = data.pageInfoPojo.currentPage;
+        var totalNum = data.pageInfoPojo.totalNum;
         if(totalNum == 0){totalNum = -1};
         _global2.plugins.page.setPage(totalPage, currentPage, totalNum);
 		for(var i = 0; i < alertPojo.length; i++) {
-			if(alertPojo[i].disposeType == "1" && alertPojo[i].disposeStatus == "1") {
-				resolveState = "已处警";
-			} else {
-				resolveState = "";
-			}
 			innerHtml += "<tr>" +
-				"<td>" + alertPojo[i].docResult + "</td>" +
+				"<td>" + alertPojo[i].handleStatus + "</td>" +
 				"<td>" + alertPojo[i].eventTime.replace("T", " ") + "</td>" +
 				"<td>" + alertPojo[i].sysCode + "</td>" +
 				"<td>" + alertPojo[i].devId + "</td>" +
@@ -744,7 +793,6 @@ function addInputTitle() {
 				"<td>" + alertPojo[i].eventSrc + "</td>" +
 				"<td>" + alertPojo[i].accountZone + "</td>" +
 				"<td>" + alertPojo[i].userMonitorId + "</td>" +
-				"<td>" + alertPojo[i].callID + "</td>" +
 				"</tr>"
 		}
 		$("#historyEventData").html(innerHtml);

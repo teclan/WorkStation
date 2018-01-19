@@ -94,9 +94,18 @@ $(document).ready(function () {
         });
 
         $("#policeRemove").bind('click',function () {
+            if(checkboxArray.length==0){
+                parent.alertSuccess("请选择要处理的警情！",2000,null);
+                return;
+            }
             parent.okAndCancel("确认处理警情？",function () {
                 submit("移去");
             },null);
+        });
+
+
+        $("#upData").bind('click',function () {
+            parent.upPopusManager1('../integratedQuery/eventQuery/upData/upData.html');
         });
     }
     function submit(handleResult) {
@@ -108,7 +117,8 @@ $(document).ready(function () {
         }
         var data=post_sync(params,"/WorkStation/eventDock/handleAlarmEvent.do");
         if(data.code=='200'){
-            parent.alertSuccess(handleResult+"操作成功!",2000,null);
+            parent.alertSuccess("操作成功!",2000,null);
+            checkboxArray = [];
             _searchEventInfo();
         }
         else{
@@ -386,12 +396,12 @@ $(document).ready(function () {
         _global.getAlarmInfosParams.pageInfoPojo.currentPage = 1;
 
         var params = _getAlarmInfosParams();
-        //$("body").loading();
+        $("body").loading();
         post_async(params, _config.ajaxUrl.alarmEventslist, _callback_getAlarmInfos);
     }
 
     function _callback_getAlarmInfos(data) {
-        //$("body").removeLoading();
+        $("body").removeLoading();
         $("#content").scrollLeft(0).scrollTop(0);                   //滚动条复位
         var result = data.result;
 
@@ -462,7 +472,7 @@ $(document).ready(function () {
         var  pageInfoPojo = {
             "pageSize": 25,
             "currentPage": 1,
-            "sort": "DESC",
+            "sort": "eventTime|DESC",
         }
         _getAlarmInfos(queryTond,pageInfoPojo);
     }

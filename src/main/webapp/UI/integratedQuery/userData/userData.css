@@ -929,3 +929,6 @@ input[type="checkbox"] {display: none;}
 .timePngchange{
     background-image:url("../../resource/image/timeTop_normal.png"),url("../../resource/image/timeBottom_active.png");
 }
+.timePngchange2{
+    background-image:url("../../resource/image/timeTop_active.png"),url("../../resource/image/timeBottom_normal.png");
+}

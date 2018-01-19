@@ -18,6 +18,8 @@ $(document).ready(function () {
     window.resizeDocment = _resizeDocment;  //修改页面大小
     window.init = _init;
     window.upPopusManager = _upPopusManager;
+    window.upPopus2Manager = _upPopus2Manager;
+    window.upPopusManager1 = _upPopusManager1;
     window.setSelectedJsonData = _setSelectedJsonData;
     window.getSelectedJsonData = _getSelectedJsonData;
     window.okAndCancel = _okAndCancel;
@@ -27,6 +29,10 @@ $(document).ready(function () {
     window.getSysuserID = _getSysuserID;
     window.closeupPopus = _closeupPopus;        //关闭弹窗
     window.audioPlay = _audioPlay;
+    window.updateEvent = _updateEvent;
+    window.openProcePopups = _openProcePopups;
+    window.stopProce = _stopProce;
+
     //初始化
 
     var _config = {
@@ -40,6 +46,7 @@ $(document).ready(function () {
         iframeUrl:{
             alarmData: '../alarmData/alarmData.html',
             iframeAllManager:'../integratedQuery/integratedQueryRDPolice.html',
+            iframeStateMonitor:'../stateMonitor/stateMonitor.html',
             iframepwdUpData:'resetPassword/resetPassword.html'
         },
     };
@@ -110,6 +117,14 @@ $(document).ready(function () {
             $(this).siblings().removeClass('nav-active').addClass('nav-normal');
             _changePage("iframeRdPolice");
         });
+
+        //状态监控点击事件
+        $("#stateMonitor").bind('click', function () {
+            $(this).addClass('nav-active').removeClass('nav-normal');
+            $(this).siblings().removeClass('nav-active').addClass('nav-normal');
+            _changePage("stateMonitor");
+
+        });
         //修改密码点击事件
         $("#pwdUpData").bind('click', function () {
             _changePage("pwdUpData");
@@ -143,6 +158,16 @@ $(document).ready(function () {
                     'width': '0px'
                 });
                 break;
+            case 'stateMonitor':
+                $("#iframeStateMonitor").css({
+                    'width': '100%'
+                }).siblings().css({
+                    'width': '0px'
+                });
+                if($("#iframeStateMonitor").attr('src')==''){
+                    $("#iframeStateMonitor").attr('src',_global.iframeUrl.iframeStateMonitor);
+                }
+                break;
             case 'allManager':
                 $("#iframeAllManager").css({
                     'width': '100%'
@@ -174,7 +199,19 @@ $(document).ready(function () {
             height: 600
         });
     }
+    function _upPopus2Manager(url){
+        _openUp2Popups($('body'),url , {
+            width: 1000,
+            height: 600
+        });
+    }
 
+    function _upPopusManager1(url){
+        _openUpPopups($('body'),url , {
+            width: 400,
+            height: 230
+        });
+    }
     function _closeupPopus() {
         $("#upMainDiv").remove();
         $("#upBottomDiv").remove();
@@ -245,6 +282,29 @@ $(document).ready(function () {
         if($("#labelAlert").hasClass('isAlert')){
             audio.play();//audio.play();// 这个就是播放
         }
+    }
+    function _updateEvent(json){
+        //$("body").loading();
+        openProcesserPopups($("body"),'',100);
+        var data=post_sync(json,"/WorkStation/eventDock/updateEvent.do");
+        if(data.code=='200'){
+            iframeRdPolice.searchEventInfo();
+            stopProcesser();
+            //$("body").removeLoading();
+            _alertSuccess("操作成功!",2000,null);
+        }
+        else{
+            stopProcesser();
+            //$("body").removeLoading();
+            _alertFail(data.message,2000,null);
+        }
+    }
+    function _openProcePopups(color,sleepTime) {
+        openProcesserPopups($("body"),color,sleepTime);
+    }
+
+    function _stopProce() {
+        stopProcesser();
     }
 })(jQuery, window);
 

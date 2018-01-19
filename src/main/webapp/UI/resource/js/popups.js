@@ -215,6 +215,10 @@ function _closeUp2Popus() {
         $("#upMainDiv").remove();
         $("#upBottomDiv").remove();
     }
+function _closeUp2Popus() {
+    $("#up2MainDiv").remove();
+    $("#up2BottomDiv").remove();
+}
 
     function _changeUpSize(iframSize){
         var iframSizeWidth = iframSize.width;

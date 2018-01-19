@@ -1,0 +1,337 @@
+* {
+    font-family: "Microsoft YaHei";
+    font-size: 14px;
+}
+
+.main {
+    width: 1000px;
+    height: 600px;
+    border-radius: 3px;
+    cursor: default;
+}
+
+.title {
+    height: 30px;
+    background: #335281;
+}
+
+.title_1 {
+    font-size: 14px;
+    color: #ffffff;
+    line-height: 30px;
+    margin-left: 20px;
+}
+
+#close {
+    background: url("../img/close.png") no-repeat 7px 7px;
+    width: 16px;
+    height: 16px;
+    float: right;
+    cursor: pointer;
+    padding: 7px;
+}
+
+#close:hover, #close:active {
+    background-color: #d44027;
+}
+
+.centen {
+
+}
+
+.centen_title {
+    height: 40px;
+    width: 100%;
+    background: #EEEEEE;
+    box-sizing: border-box;
+    border-bottom: 1px solid #d9d9d9;
+}
+
+.centen_title_left {
+    float: left;
+    margin: 10px 0 10px 20px;
+}
+
+.centen_title_left_img {
+    background: url(../img/1_03.png);
+    width: 18px;
+    height: 17px;
+    float: left;
+    margin: 2px 10px 0 0;
+}
+
+.centen_title_left_img2 {
+    background: url(../img/1_15.png);
+    width: 18px;
+    height: 17px;
+    float: left;
+    margin: 2px 10px 0 0;
+}
+
+.centen_title_left_img3 {
+    background: url(../img/linke.png);
+    width: 18px;
+    height: 17px;
+    float: left;
+    margin: 2px 10px 0 0;
+}
+
+.ON {
+    float: left;
+    margin: 18px 0 0 15px;
+    width: 53px;
+    height: 20px;
+    background: url(../img/ON.png);
+    cursor: pointer;
+}
+
+.OFF {
+    float: left;
+    margin: 18px 0 0 15px;
+    width: 53px;
+    height: 20px;
+    background: url(../img/OFF.png);
+    cursor: pointer;
+}
+
+.centen_title_left_text {
+    height: 20px;
+    line-height: 20px;
+    float: left;
+    font-size: 16px;
+}
+
+.centen_title_right {
+    float: right;
+    margin: 7px 20px 7px 0;
+    height: 26px;
+    width: 240px;
+}
+
+.userData {
+    height: 30px;
+    line-height: 30px;
+    float: right;
+    box-sizing: border-box;
+    border-radius: 6px;
+    cursor: pointer;
+    border: 1px solid #cccccc;
+    background: white;
+    width: 90px;
+    text-align: center;
+    margin: 8px 20px;
+}
+.userData:hover{
+    color: #5f5757;
+}
+
+.centen_title_right_buttom {
+    width: 80px;
+    box-sizing: border-box;
+    height: 26px;
+    float: left;
+    background: white;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.protection_bottom {
+    border-top: 1px solid #cccccc;
+    border-bottom: 1px solid #cccccc;
+    border-left: 1px solid #cccccc;
+}
+
+.removal_bottom {
+    border: 1px solid #cccccc;
+}
+
+.protectionImg {
+    background: url(../img/1_05.png);
+    width: 14px;
+    height: 17px;
+    float: left;
+    margin: 4px 10px 0 15px;
+}
+
+.removalImg {
+    background: url(../img/1_07.png);
+    width: 14px;
+    height: 17px;
+    float: left;
+    margin: 4px 10px 0 15px;
+}
+
+#protection:hover {
+    color: #ed8f03;
+}
+
+#removal:hover {
+    color: #eb3394;
+}
+
+.refresh {
+    float: right;
+    height: 26px;
+    line-height: 26px;
+    box-sizing: border-box;
+    border: 1px solid #cccccc;
+    width: 60px;
+    text-align: center;
+    border-radius: 3px;
+    background: white;
+    color: #323232;
+    cursor: pointer;
+}
+
+#refresh:hover {
+    color: #EEEEEE;
+}
+
+.centen_title_right_text {
+    height: 26px;
+    line-height: 26px;
+}
+
+.centen_row {
+    width: 100%;
+    height: 35px;
+}
+
+.centen_row_centen {
+    height: 35px;
+    margin: 0 55px 0 20px;
+    float: left;
+    line-height: 55px;
+}
+
+.centen_row_Text {
+    float: left;
+}
+
+.protectionColor {
+    color: #ed8f03;
+}
+
+.removalColor {
+   /* color: #eb3394;*/
+}
+
+.centen_centen {
+    margin: 18px 20px 0px 20px;
+    height: 432px;
+    box-sizing: border-box;
+    border: 1px solid #d9d9d9;
+
+}
+
+.centen_centen_title {
+    width: 100%;
+    height: 38px;
+    background: #F1F1F1;
+    box-sizing: border-box;
+    border-bottom: 1px solid #D9D9D9;
+}
+
+.title_scope_defenseNum {
+    width: 230px;
+    height: 38px;
+    box-sizing: border-box;
+    border-right: 1px solid #D9D9D9;
+    float: left;
+    line-height: 38px;
+    text-align: center;
+}
+
+.titleState {
+    width: 230px;
+    height: 38px;
+    box-sizing: border-box;
+    border-right: 1px solid #D9D9D9;
+    float: left;
+    line-height: 38px;
+    text-align: center;
+}
+
+.operation {
+    width: 235px;
+    height: 38px;
+    float: left;
+    line-height: 38px;
+    text-align: center;
+}
+
+.row_List {
+    width: 100%;
+    height: 392px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.centen_centen_row {
+    width: 100%;
+    height: 38px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #D9D9D9;
+}
+
+.centen_centen_row:hover {
+    background: #D5E5FF;
+}
+
+.State_row {
+    width: 230px;
+    height: 38px;
+    float: left;
+    line-height: 38px;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.scope_defenseNum_row {
+    width: 230px;
+    height: 38px;
+    float: left;
+    line-height: 38px;
+    text-align: center;
+}
+.fMemo_row{
+    width: 230px;
+    height: 38px;
+    float: left;
+    line-height: 38px;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.operation_row {
+    width: 235px;
+    height: 38px;
+    float: left;
+    line-height: 38px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.operation_row:hover {
+    color: #323232;
+}
+
+.contentBottom {
+    width: -moz-calc(100%);
+    width: -webkit-calc(100%);
+    width: calc(100%);
+    height: 42px;
+    margin-top: 5px;
+}
+
+.row_checked {
+    background: #D5E5FF;
+}
+
+.disable {
+    pointer-events: none;
+    opacity: 0.4;
+}

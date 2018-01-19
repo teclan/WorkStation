@@ -169,7 +169,35 @@ $(document).ready(function () {
 
         $('#codeTypeId').bind('change',function (e) {
             changeCodeType();
-        })
+        });
+        $("#btn-export").click(function(){
+            var param = _getAlarmInfosParams();
+            var time = $("#startTime").val().replace(" ","T")+";"+$("#endTime").val().replace(" ","T");
+            var params = {
+                "queryTond":{
+                    "eventNum":"", //事件编号,为空（null 或者 “”）将忽略该条件，下方字段也是如此
+                    "eventTime":time.replace(" ","T").replace(" ","T"), // 事件发生时间
+                    "sysCode":"", // 系统码
+                    "accountNum":$("#accountNum").val(), // 机主编号
+                    "accountName":$("#userName").val(), // 机主名称
+                    "handleStatus":"", // 处理状态（未处理，已处理)
+                    "handleResult":"", // 处理结果（确认警情，误报，移去）
+                    "handleDesc":"", // 处理结果说明
+                    "handleTime":"", // 处理时间
+                    "codeTypeId":$("#codeTypeId").val(),
+                    "eventDesc":$("#eventDesc").val(),
+                },
+                "pageInfoPojo": {
+                    "currentPage": param.pageInfoPojo.currentPage,
+                    "sort": param.pageInfoPojo.sort,
+                    "pageSize": param.pageInfoPojo.pageSize}
+                , "headers":[]
+            };
+            var url = "/WorkStation/ExportExcel/EventExcel.do";
+
+            window.open(url+'?params='+JSON.stringify(params), "_blank");
+            _global.top.alertSuccess("正在导出，请稍等！",1000,null);
+        });
     }
 
     function _initEven() {
@@ -184,7 +212,6 @@ $(document).ready(function () {
         $("#policeCheck").bind('click',function () {
             _searchEventInfo();
         });
-
         //默认点击一次
         $("#eveDescribe").click();
     }

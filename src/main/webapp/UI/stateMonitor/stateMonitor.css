@@ -1,0 +1,347 @@
+* {
+	float: left;
+}
+
+html {
+	width: 100%;
+	height: 100%;
+}
+
+body {
+	width: 100%;
+	height: 100%;
+	margin-top: 0px;
+	margin-left: 0px;
+	float: left;
+	box-sizing: border-box;
+	font-family: "Microsoft YaHei";
+}
+
+.content {
+	width: 100%;
+	height: 100%;
+}
+
+.contentRight {
+	width: -moz-calc(100%);
+	width: -webkit-calc(100%);
+	width: calc(100%);
+	height: 100%;
+}
+
+iframe {
+	border: 0px;
+}
+
+.userInfoIframe {
+	width: 0px;
+	height: 100%;
+}
+
+.contentLeft {
+	width: 210px;
+	height: 100%;
+	background-color: #19183c;
+	overflow: scroll;
+	overflow-x: hidden;
+}
+
+.contentLeft_child {
+	width: 190px;
+	height: calc(100% - 61px);
+	background-color: #19183c;
+	color: #d1d1d1;
+	font-size: 14px;
+}
+
+.bar1 {
+	margin-top: 10px;
+	width: 150px;
+	color: white;
+	height: 50px;
+	padding-left: 40px;
+	line-height: 50px;
+	background-color: #212a51;
+	background-image: url("img/userMgSta.png");
+	background-position: 10% 50%;
+	background-repeat: no-repeat;
+	cursor: pointer;
+	font-size: 14px;
+	border-bottom: 1px solid #26325c;
+}
+
+.bar1Img {
+	background-image: url("img/spread.png");
+	background-size: 14px;
+	background-repeat: no-repeat;
+	cursor: pointer;
+	height: 14px;
+	width: 14px;
+	float: right;
+	margin: 18px 20px 0 0;
+}
+
+.bar1Img:hover {
+	background-image: url("img/spread_.png");
+}
+
+.list {
+	width: 150px;
+	height: 40px;
+	padding-left: 40px;
+	line-height: 40px;
+	background-color: #212a51;
+	border-bottom: 1px solid #26325c;
+	cursor: pointer;
+}
+
+.list_img {
+	background-image: url("img/editList.png");
+	background-size: 14px;
+	background-repeat: no-repeat;
+	cursor: pointer;
+	height: 14px;
+	width: 14px;
+	float: right;
+	margin: 14px 20px 0 0;
+}
+
+.list_img:hover {
+	background-image: url("img/editList_.png");
+}
+
+.checked {
+	background-color: #30619e;
+}
+
+.contentRightTop {
+	width: 98.5%;
+	height: -moz-calc(100%);
+	height: -webkit-calc(100%);
+	height: calc(100%);
+	margin: 0 0px 0 10px;
+}
+
+.contentRightBottom {
+	width: -moz-calc(100% - 20px);
+	width: -webkit-calc(100% - 20px);
+	width: calc(100% - 20px);
+	height: 36px;
+	margin-top: 0px;
+	box-sizing: border-box;
+	margin-left: 10px;
+	border-left: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+}
+
+.title {
+	width: 100%;
+	height: 33px;
+	margin: 10px 0 0 0px;
+}
+
+.title_left {}
+
+.title_left_img {
+	width: 5px;
+	height: 25px;
+	margin-top: 5px;
+	background-color: #f55638;
+}
+
+.title_left_text {
+	height: 33px;
+	margin-left: 10px;
+	font-size: 24px;
+	color: #323232;
+}
+
+.searchTitle {
+	width: 100%;
+	height: 80px;
+	margin-top: 8px;
+	border: 1px solid #d9d9d9;
+	background-color: #f1f1f1;
+	font-size: 14px;
+	color: #245281;
+	box-sizing: border-box;
+}
+
+.contentBottom {
+	width: -moz-calc(100%);
+	width: -webkit-calc(100%);
+	width: calc(100%);
+	height: 36px;
+	margin-top: 0px;
+	box-sizing: border-box;
+	border-left: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+}
+
+.searchList {
+	border: 1px solid #d9d9d9;
+	box-sizing: border-box;
+	width: calc(100%);
+	width: -moz-calc(100%);
+	width: -webkit-calc(100%);
+	height: calc(100% - 177px);
+	margin-top: 10px;
+	overflow: scroll;
+	overflow-x: hidden;
+}
+
+.search_text {
+	width: 480px;
+	height: 28px;
+	border: 1px solid #d9d9d9;
+	border-radius: 3px;
+	margin-top: 4px;
+	margin-left: 10px;
+	background-color: #FFFFFF;
+}
+
+.searchInput {
+	width: calc(100% - 5px);
+	height: 94%;
+	line-height: 28px;
+	border-radius: 3px;
+	border: 0px;
+	color: #323232;
+	padding-left: 5px;
+}
+
+.btns {
+	width: 87px;
+	height: 26px;
+	line-height: 26px;
+	text-align: center;
+	border: 1px solid #335281;
+	border-radius: 3px;
+	cursor: pointer;
+	margin: 5px 0 0 12px;
+}
+
+.btn1 {
+	background: #335281;
+	color: #fff;
+	margin-right: 6px;
+}
+
+.search_check {
+	clear: left;
+	width: 100%;
+	height: 30px;
+	margin-top: 7px;
+	margin-left: 10px;
+	line-height: 30px;
+}
+
+label span {
+	width: 15px;
+	height: 15px;
+	margin: 8px 5px 0 5px;
+}
+
+label label {
+	margin: 8px 5px 0 5px;
+}
+
+.isCheck {
+	background: url(../resource/images/integratedQuery/isChecked.png);
+}
+
+.noCheck {
+	background: url(../resource/images/integratedQuery/noChecked.png);
+}
+
+.checkColor {
+	width: 10px;
+	height: 10px;
+	margin: 10px 15px 10px 5px;
+}
+
+.callPoliceColor {
+	background-color: #e6431d;
+}
+
+.protectionColor {
+	background-color: #71c441;
+}
+
+.removalColor {
+	background-color: #ec9002;
+}
+
+.theBypassColor {
+	background-color: #00d3fe;
+}
+
+.offlineColor {
+	background-color: #777777;
+}
+
+.unusedColor {
+	background-color: #aaaaaa;
+}
+
+.otherColor {
+	background-color: #c176b5;
+}
+
+.stateDiv {
+	margin: 15px 0 5px 20px;
+	width: 150px;
+	height: 100px;
+	border: 1px solid #d9d9d9;
+	border-radius: 7px;
+	cursor: default;
+}
+
+.stateDiv:hover {
+	box-shadow: 3px 4px 19px 0px #888888;
+}
+
+.stateText {
+	color: black;
+	width: 100%;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+}
+
+.statebuttom {
+	width: 151px;
+	height: 51px;
+	border-radius: 0 0 6px 6px;
+}
+
+.stateUserName {
+	color: white;
+	width: 93%;
+	height: 25px;
+	text-align: center;
+	line-height: 33px;
+	font-size: 14px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	padding-left: 5px;
+}
+
+.stateUserNum {
+	color: white;
+	width: 100%;
+	height: 25px;
+	text-align: center;
+	line-height: 17px;
+	font-size: 14px;
+}
+
+.list_name {
+	width: 115px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}

@@ -272,7 +272,7 @@ $(function() {
 	/************************************************
 	 获取历史事件的查询条件，并查询
 	 ************************************************/
-	var history_startTime = $("#center_time_start_text").val().replace(" ", "T");
+	/*var history_startTime = $("#center_time_start_text").val().replace(" ", "T");
 	var history_endTime = $("#center_time_end_text").val().replace(" ", "T");
 	var history_eventTime = history_startTime + ";" + history_endTime;
 	var history_json = {
@@ -285,7 +285,7 @@ $(function() {
 	post_async(
 		history_json,
 		"../../../../ownerEvent.do",
-		historyEvent_callback);
+		historyEvent_callback);*/
 
 	/************************************************
 	 历史事件的搜索按钮的点击事件
@@ -359,45 +359,11 @@ $(function() {
 	});
 	isDispose(rowData.disposeStatus);
 	//isSameSysuerID(rowData.disposer); //其他用户是否可以预处理
-	checkDisposeType(rowData);
+	//checkDisposeType(rowData);
 	//默认点击一次 未处理事件
 	$("#untreated_event").click();
 });
-/************************************************
- 解锁功能的回调函数
- ************************************************/
-function lockCallback(data) {
-	if(data.result.code == "1") {
-		var accountNum = rowData.accountNum;
-		var sysuserID = parent.getSysuserID();
-		post_async({
-				"sysuserID": sysuserID,
-				"accountNum": accountNum,
-				"type": 3
-			},
-			"../../../../delAlertsock.do",
-			unlockCallback);
-	} else {
-		parent.closePopus();
-	}
-}
 
-function unlockCallback(data) {
-	if(data.result.code == "0") {
-		parent.closePopus();
-	}
-	if(data.result.code == "1") {
-		var accountNum = rowData.accountNum;
-		var sysuserID = parent.getSysuserID();
-		post_async({
-				"sysuserID": sysuserID,
-				"accountNum": accountNum,
-				"type": 3
-			},
-			"../../../../delAlertsock.do",
-			unlockCallback);
-	}
-}
 //获取当前时间
 function getNowFormatDate() {
 	var date = new Date();
@@ -803,7 +769,7 @@ function basicInformation_callback(data) {
 	$("#fMemo").val(data.userInformation.fMemo);
 	//$("#handleDesc").val(data.userInformation.handleDesc);
 	$("#InternetTel").val(data.userInformation.pnlTel);
-	$("#wirelessTel").val(data.userInformation.pnlHdTel);
+	$("#pnlHdTel").val(data.userInformation.pnlHdTel);
 	$("#cPayNO").val(data.userInformation.contactPayNO);
 	$("#rdClass").val(getUsrAlmType(data.userInformation.usrAlmType)); //用户级别
 	$("#eventType").val(rowData.codeType); //事件类型
@@ -1452,46 +1418,21 @@ function getEventType(typeId) {
 		}
 	}
 
-	function _getUserZoneIsAlarmParams() {
-		var params = {};
-		params.userZonePojo = _global.userZonePojo;
-		return params;
-	}
-
 	function _getUserZoneIsAlarm(isShow) {
-		var params = _getUserZoneIsAlarmParams();
-		post_async(params, _config.ajaxUrl.getUserZoneIsAlarmUrl, _callback_getUserZoneIsAlarm, isShow);
-	}
-
-	function _callback_getUserZoneIsAlarm(data, isShow) {
-		var result = data.result;
-		if(result.code == 0) {
-			_global.userZonePojo = data.userZonePojo;
-			//_global.isUserZoneShow = true;
-			_clearRow();
-			for(var i = 0; i < _global.userZonePojo.length; i++) {
-				if(isShow) {
-                    var pathId = "#areaImage" + _global.userZonePojo[i].mapId;
-                    if($(pathId).length == 0){
-                        continue;
-                    }
-                    if($(pathId).data('isOk') == 1){
-                        if(_global.userZonePojo[i].isAlert == 1) {
-                            _createAlarmIcon(_global.userZonePojo[i].x, _global.userZonePojo[i].y, _global.userZonePojo[i].ownerZoneName, $(pathId), _global.userZonePojo[i]);
-                        } else {
-                            _createIcon(_global.userZonePojo[i].x, _global.userZonePojo[i].y, _global.userZonePojo[i].ownerZoneName, $(pathId), _global.userZonePojo[i]);
-                        }
-					}
-
+		for(var i = 0; i < _global.userZonePojo.length; i++) {
+			if(isShow) {
+				var pathId = "#areaImage" + _global.userZonePojo[i].mapId;
+				if($(pathId).length == 0){
+					continue;
 				}
-				//_AddTableRow(_global.userZonePojo[i]);
+				if($(pathId).data('isOk') == 1){
+					_createIcon(_global.userZonePojo[i].x, _global.userZonePojo[i].y, _global.userZonePojo[i].ownerZoneName, $(pathId), _global.userZonePojo[i]);
+				}
+
 			}
 		}
 	}
 
-	function _clearRow() {
-		$("#table_content").children(".table_row").remove();
-	}
 
 	function _showZone(isShow) {
 		_getUserZoneIsAlarm(isShow);
@@ -1688,7 +1629,9 @@ function getEventType(typeId) {
 		$("#eventDesc").val(jsonData.eventDescribe); //事件描述
 		$("#eventTime").val(jsonData.eventTime); //报警时间
 		$("#alarmAddr").val(jsonData.alarmAddr); //报警位置
-		$("#handleDesc").val(jsonData.handleDesc); //报警位置
+
+		$("#handleTime").val(jsonData.handleTime); //处理时间
+		$("#handleDesc").val(jsonData.handleDesc); //结果说明
 
 		//设置搜索的默认时间，报警时间的前十分钟
 		var nowTime = getBeforeTenMinFormat(eventTime);

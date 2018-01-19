@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>接处警系统</title>
+		<link rel="stylesheet" type="text/css" href="./stateMonitor.css">
+		<script type="text/javascript" src="../resource/js/jquery-1.8.0.min.js"></script>
+		<script type="text/javascript" src="../resource/js/jquery-ajax-expand.js"></script>
+	</head>
+
+	<body>
+		<div id="content" class="content">
+			<div id="contentRight" class="contentRight">
+				<div id="contentRightTop" class="contentRightTop">
+					<div id="title" class="title">
+						<div id="title_left" class="title_left">
+							<div id="title_left_img" class="title_left_img"></div>
+							<div id="title_left_text" class="title_left_text">用户监控列表</div>
+						</div>
+					</div>
+					<div id="searchTitle" class="searchTitle">
+						<div class="search_text">
+							<input type="text" id="searchInput" placeholder="可输入用户编号、用户名称、负责人手机" class="searchInput" />
+						</div>
+						<!--<div id="policeCheck" class="btns btn1">确定</div>-->
+						<div id="policeCheck" class="btns btn1">查询</div>
+						<div id="search_check" class="search_check">
+							<div>监控状态：</div>
+							<label>
+								<span id=" " class="noCheck"></span>
+								<div>全部</div>
+								<div class="checkColor "></div>
+							</label>
+							<!--<label>
+								<span id="isAlarm" class="noCheck"></span>
+								<div>报警</div>
+								<div class="checkColor callPoliceColor"></div>
+							</label>-->
+							<label>
+								<span id="isBF" class="noCheck"></span>
+								<div>布防</div>
+								<div class="checkColor protectionColor"></div>
+							</label>
+							<label>
+								<span id="noBF" class="noCheck"></span>
+								<div>撤防</div>
+								<div class="checkColor removalColor"></div>
+							</label>
+							<!--<label>
+								<span id="isBYpass" class="noCheck"></span>
+								<div>旁路</div>
+								<div class="checkColor theBypassColor"></div>
+							</label>-->
+							<label>
+								<span id="isTimeout" class="noCheck"></span>
+								<div>离线</div>
+								<div class="checkColor offlineColor"></div>
+							</label>
+							<label style="pointer-events:none;">
+								<label></label>
+								<div>未使用</div>
+								<div class="checkColor unusedColor"></div>
+							</label>
+							<label style="pointer-events:none;">
+								<label></label>
+								<div>其他</div>
+								<div class="checkColor otherColor"></div>
+							</label>
+						</div>
+					</div>
+					<div id="searchList" class="searchList">
+						<!--<div class="stateDiv">
+							<div class="stateText">报警/旁路/布防</div>
+							<div class="statebuttom callPoliceColor">
+								<div class="stateUserName">桂林远望</div>
+								<div class="stateUserNum">710400320</div>
+							</div>
+						</div>-->
+						
+					</div>
+					<div id="contentBottom" class="contentBottom">
+						<div id="pageBox" class="pageBox"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../tool/jquery-page-1.0.1/jquery-page-1.0.1.js"></script>
+	<script type="text/javascript" src="../resource/js/load.js"></script>
+	<script type="text/javascript" src="./stateMonitor.js"></script>
+</html>

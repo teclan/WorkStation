@@ -12,9 +12,6 @@
 	</properties>
 
 	<dependencies>
-
-
-
 		<!-- MySQL的驱动 开始 -->
 		<dependency>
 			<groupId>mysql</groupId>

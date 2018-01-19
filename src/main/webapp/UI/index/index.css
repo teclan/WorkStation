@@ -29,7 +29,7 @@ body{
 	background-image: url(../resource/images/rdPolice/rdPoliceSystem.png);
 }
 .labelCenter{
-	width: 320px;
+	width: 455px;
 	height: 65px;
 }
 .line-title{
@@ -76,6 +76,16 @@ body{
 	margin-top: 17px;
 }
 .allManagerText{
+	margin-left: 10px;
+}
+.stateMonitorLabel{
+	width: 33px;
+	height: 31px;
+	background-image: url(../resource/images/rdPolice/stateMonitor.png);
+	margin-left: 18px;
+	margin-top: 17px;
+}
+.stateMonitorText{
 	margin-left: 10px;
 }
 

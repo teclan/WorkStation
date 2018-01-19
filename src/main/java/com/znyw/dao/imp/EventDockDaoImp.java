@@ -1,17 +1,23 @@
 package com.znyw.dao.imp;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.znyw.dao.EventDockDao;
 import com.znyw.tool.Objects;
 import com.znyw.tool.SqlGenerateUtils;
@@ -19,6 +25,7 @@ import com.znyw.tool.SqlGenerateUtils;
 @Repository
 public class EventDockDaoImp implements EventDockDao {
 	private static final Logger LOGGER = LoggerFactory.getLogger(EventDockDaoImp.class);
+	private static final SimpleDateFormat DATE_FORMATE = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 	private static final String INSERT_WS_OWNERS_SQL = "insert into ws_owners %s";
 	private static final String UPDATE_WS_OWNERS_SQL = "update ws_owners set %s where userId='%s'";
@@ -62,7 +69,7 @@ public class EventDockDaoImp implements EventDockDao {
 		ALARM_EVENT_COLUMNS.add("eventSrc");
 	}
 
-	@Resource
+	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
 	@Override
@@ -80,6 +87,7 @@ public class EventDockDaoImp implements EventDockDao {
 		return false;
 	}
 
+	@Override
 	public boolean updateOwners(String userId, Map<String, Object> namesAndValues) {
 		try {
 			String updateSql = String.format(UPDATE_WS_OWNERS_SQL,
@@ -95,6 +103,7 @@ public class EventDockDaoImp implements EventDockDao {
 
 	}
 
+	@Override
 	@SuppressWarnings("deprecation")
 	public boolean getOwnersByUserId(String userId) {
 
@@ -127,12 +136,12 @@ public class EventDockDaoImp implements EventDockDao {
 		String queryDataSql = "";
 
 		if (Objects.isNull(userIds)) {
-			queryCountSql = "select count(*) from ws_owners where 1=1 "
-					+ userName + userAddr + areaName + contact + cPhone + cMobile + cMobile + pnlTel + pnlHdTel;
+			queryCountSql = "select count(*) from ws_owners where 1=1 " + userName + userAddr + areaName + contact
+					+ cPhone + cMobile + cMobile + pnlTel + pnlHdTel;
 
-			queryDataSql = "select * from ws_owners where 1=1 "
-					+ userName + userAddr + areaName + contact + cPhone + cMobile + cMobile + pnlTel + pnlHdTel
-					+ " order by userName " + sort + " limit " + (currPage * pageSize) + "," + pageSize;
+			queryDataSql = "select * from ws_owners where 1=1 " + userName + userAddr + areaName + contact + cPhone
+					+ cMobile + cMobile + pnlTel + pnlHdTel + " order by userId " + sort + " limit "
+					+ (currPage * pageSize) + "," + pageSize;
 
 		} else {
 			queryCountSql = "select count(*) from ws_owners where userId in ('" + Objects.Joiner("','", userIds) + "') "
@@ -140,10 +149,9 @@ public class EventDockDaoImp implements EventDockDao {
 
 			queryDataSql = "select * from ws_owners where userId in ('" + Objects.Joiner("','", userIds) + "') "
 					+ userName + userAddr + areaName + contact + cPhone + cMobile + cMobile + pnlTel + pnlHdTel
-					+ " order by userName " + sort + " limit " + (currPage * pageSize) + "," + pageSize;
+					+ " order by userId " + sort + " limit " + (currPage * pageSize) + "," + pageSize;
 
 		}
-
 
 		int totalNum = 0;
 		List<Map<String, Object>> lists = new ArrayList<Map<String, Object>>();
@@ -183,23 +191,29 @@ public class EventDockDaoImp implements EventDockDao {
 		return false;
 	}
 
+	@Override
 	@SuppressWarnings("deprecation")
 	public Map<String, Object> alarmEventslist(String eventNum, String eventTime, String evtWay, String eventDesc,
 			String codeTypeId, String accountNum, String accountName, String handleStatus, String handleResult,
-			String handleDesc, String handleTime,
-			String sort, int pageSize, int currPage) {
-		
-		
+			String handleDesc, String handleTime, String sort, int pageSize, int currPage) {
+
 		String[] times = Objects.isNullString(eventTime) ? new String[] { "", "" } : eventTime.split(";");
 		String timeStart = times[0];
 		String timeEnd = times[1];
 
 		String timeSql = "";
+		// if (Objects.isNotNullString(timeStart)) {
+		// timeSql += " AND eventTime > DATE_SUB('" + timeStart + "',INTERVAL 1 DAY) ";
+		// }
+		// if (Objects.isNotNullString(timeEnd)) {
+		// timeSql += " AND eventTime < DATE_SUB('" + timeEnd + "',INTERVAL -1 DAY) ";
+		// }
+
 		if (Objects.isNotNullString(timeStart)) {
-			timeSql += " AND eventTime > DATE_SUB('" + timeStart + "',INTERVAL 1 DAY) ";
+			timeSql += " AND eventTime > '" + timeStart + "' ";
 		}
 		if (Objects.isNotNullString(timeEnd)) {
-			timeSql += " AND eventTime < DATE_SUB('" + timeEnd + "',INTERVAL -1 DAY) ";
+			timeSql += " AND eventTime < '" + timeEnd + "' ";
 		}
 
 		eventNum = Objects.isNullString(eventNum) ? "" : String.format(" and locate('%s',eventNum)>0 ", eventNum);
@@ -218,16 +232,26 @@ public class EventDockDaoImp implements EventDockDao {
 				: String.format(" and locate('%s',handleDesc)>0 ", handleDesc);
 		handleTime = Objects.isNullString(handleTime) ? "" : String.format(" and locate('%s',eventNum)>0 ", handleTime);
 
-		sort = Objects.isNullString(sort) ? "ASC" : sort.contains("ASC") ? "ASC" : "DESC";
+		sort = Objects.isNullString(sort) ? "devId|ASC,eventTime|ASC" : sort;
 
-		String queryCountSql = "select count(*) from ws_alarm_event where 1=1 " + eventNum + evtWay
-				+ eventDesc + codeTypeId + accountNum + accountName + handleStatus + handleResult + handleDesc
-				+ handleTime + timeSql;
+		String devSortSql = "";
+		String timeAndEventNumSort = "";
+		if (sort.indexOf(",") > 0) {
+			devSortSql = sort.split(",")[0].contains("ASC") ? "ASC" : "DESC";
+			devSortSql = " devId " + devSortSql + " ,";
+			timeAndEventNumSort = sort.split(",")[1].contains("ASC") ? "ASC" : "DESC";
+		} else {
+			timeAndEventNumSort = sort.contains("ASC") ? "ASC" : "DESC";
+		}
 
-		String queryDataSql = "select * from ws_alarm_event where 1=1 " + eventNum + evtWay + eventDesc
+		String queryCountSql = "select count(*) from ws_alarm_event where 1=1 " + eventNum + evtWay + eventDesc
 				+ codeTypeId + accountNum + accountName + handleStatus + handleResult + handleDesc + handleTime
-				+ timeSql
-				+ " order by eventNum,eventTime " + sort + " limit " + (currPage * pageSize) + "," + pageSize;
+				+ timeSql;
+
+		String queryDataSql = "select * from ws_alarm_event where 1=1 " + eventNum + evtWay + eventDesc + codeTypeId
+				+ accountNum + accountName + handleStatus + handleResult + handleDesc + handleTime + timeSql
+				+ " order by " + devSortSql + " eventTime " + timeAndEventNumSort + ",eventNum " + timeAndEventNumSort
+				+ " limit " + (currPage * pageSize) + "," + pageSize;
 
 		int totalNum = 0;
 		List<Map<String, Object>> lists = new ArrayList<Map<String, Object>>();
@@ -251,6 +275,7 @@ public class EventDockDaoImp implements EventDockDao {
 		return map;
 	}
 
+	@Override
 	@SuppressWarnings("deprecation")
 	public boolean hasAlarmEvent(String eventNum) {
 		String sql = "select count(*) from ws_alarm_event where eventNum=?";
@@ -262,12 +287,12 @@ public class EventDockDaoImp implements EventDockDao {
 		}
 		return false;
 	}
+
 	@Override
 	public boolean handleAlarmEvent(List<String> eventNums, String handleResult, String handleDesc, String handleTime) {
 		try {
-			int added = jdbcTemplate.update(
-					String.format(UPDATE_WS_ALARM_EVENT_SQL, Objects.Joiner("','", eventNums)), handleResult,
-					handleDesc, handleTime);
+			int added = jdbcTemplate.update(String.format(UPDATE_WS_ALARM_EVENT_SQL, Objects.Joiner("','", eventNums)),
+					handleResult, handleDesc, handleTime);
 			return added > 0;
 		} catch (Exception e) {
 			LOGGER.error(e.getMessage(), e);
@@ -275,6 +300,7 @@ public class EventDockDaoImp implements EventDockDao {
 		return false;
 	}
 
+	@Override
 	public List<String> getAllOwnerId() {
 
 		String sql = "select userId from ws_owners";
@@ -295,6 +321,7 @@ public class EventDockDaoImp implements EventDockDao {
 		return userIds;
 	}
 
+	@Override
 	public List<String> getAlreadyHandledAlarmEventIds(List<String> eventNums) {
 
 		String sql = "select eventNum from ws_alarm_event where eventNum in ('%s') and handleStatus='已处理' ";
@@ -320,6 +347,7 @@ public class EventDockDaoImp implements EventDockDao {
 		return alreadyHandledAlarmEvents;
 	}
 
+	@Override
 	public List<Map<String, Object>> getAlarmEventByEventNum(List<String> eventNums) {
 		String sql = "select * from ws_alarm_event where eventNum in ('%s')";
 
@@ -339,4 +367,61 @@ public class EventDockDaoImp implements EventDockDao {
 		return new ArrayList<Map<String, Object>>();
 	}
 
+	@Override
+	public boolean updateEvent(final JSONArray array) {
+		try {
+
+			jdbcTemplate.batchUpdate(
+					" insert into ws_alarm_event (sysCode,evtWay,accountNum,codeType,accountName,cameraModelId,zoneAtPos,snType,devZoneId,userMonitorId,codeTypeId,devSubSys,almType,eventDesc,eventLevel,areaName,eventTime,accountZone,snModelName,eventNum,devId,wantDo,accountAddr,atPos,devModelName,alarmAddr,areaId,usrAlmType,recieiveTime) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ON DUPLICATE KEY UPDATE sysCode=VALUES(sysCode)",
+					new BatchPreparedStatementSetter() {
+
+						@Override
+						public void setValues(PreparedStatement ps, int i) throws SQLException {
+							JSONObject object = (JSONObject) array.get(i);
+							ps.setString(1, object.getString("sysCode"));
+							ps.setString(2, object.getString("evtWay"));
+							ps.setString(3, object.getString("accountNum"));
+							ps.setString(4, object.getString("codeType"));
+							ps.setString(5, object.getString("accountName"));
+							ps.setString(6, object.getString("cameraModelId"));
+							ps.setString(7, object.getString("zoneAtPos"));
+							ps.setString(8, object.getString("snType"));
+							ps.setString(9, object.getString("devZoneId"));
+							ps.setString(10, object.getString("userMonitorId"));
+							ps.setString(11, object.getString("codeTypeId"));
+							ps.setString(12, object.getString("devSubSys"));
+							ps.setString(13, object.getString("almType"));
+							ps.setString(14, object.getString("eventDesc"));
+							ps.setString(15, object.getString("eventLevel"));
+							ps.setString(16, object.getString("areaName"));
+							ps.setString(17, object.getString("eventTime"));
+							ps.setString(18, object.getString("accountZone"));
+							ps.setString(19, object.getString("snModelName"));
+							ps.setString(20, object.getString("eventNum"));
+							ps.setString(21, object.getString("devId"));
+							ps.setString(22, object.getString("wantDo"));
+							ps.setString(23, object.getString("accountAddr"));
+							ps.setString(24, object.getString("atPos"));
+							ps.setString(25, object.getString("devModelName"));
+							ps.setString(26, object.getString("alarmAddr"));
+							ps.setString(27, object.getString("areaId"));
+							ps.setString(28, object.getString("usrAlmType"));
+							ps.setString(29,
+									Objects.isNullString(object.getString("recieiveTime"))
+											? DATE_FORMATE.format(new Date())
+											: object.getString("recieiveTime"));
+						}
+
+						@Override
+						public int getBatchSize() {
+							return array.size();
+						}
+					});
+			return true;
+		} catch (Exception e) {
+			LOGGER.error(e.getMessage(), e);
+		}
+		return false;
+
+	}
 }

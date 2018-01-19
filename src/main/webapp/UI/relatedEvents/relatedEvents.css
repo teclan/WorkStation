@@ -1375,7 +1375,7 @@ td{
      appearance: none;
      -moz-appearance: none;
      -webkit-appearance: none;
-     background: url("../DisposalAlarmForm/png/more.png") no-repeat scroll 98% center transparent;
+     background: url("images/selectArrow.png") no-repeat scroll 98% center transparent;
  }
 
 .checkbox_th .check{
@@ -1425,4 +1425,7 @@ td{
 }
 .timePngchange{
     background-image:url("../resource/image/timeTop_normal.png"),url("../resource/image/timeBottom_active.png");
+}
+.timePngchange2{
+    background-image:url("../resource/image/timeTop_active.png"),url("../resource/image/timeBottom_normal.png");
 }

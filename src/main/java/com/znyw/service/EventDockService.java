@@ -19,6 +19,8 @@ public interface EventDockService {
 
 	JSONObject handleAlarmEvent(JSONObject jsonObject);
 
+	JSONObject updateEvent(JSONArray array);
+	
 	List<String> getAllOwnerId();
 
 

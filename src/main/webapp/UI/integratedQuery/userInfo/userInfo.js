@@ -127,15 +127,44 @@ $(document).ready(function () {
                 submit();
             },null);
         });
+        $("#btn-export").click(function(){
+            var params = {
+                "queryTond":{
+                    "userIds":[], // 查询的机主用户ID列表，数组为空时返回所有
+                    "userName":$("#userName").val(), // 指定关键字模糊查询此字段，下方字段与此相同，字段可不写或设置为null或为空字符串均忽略
+                    "userAddr":$("#userAddr").val(),
+                    "areaName":"",
+                    "contact":"",
+                    "cPhone":"",
+                    "cMobile":"",
+                    "pnlTel":"",
+                    "pnlHdTel":""
+                },
+                "pageInfoPojo": {
+                    "pageSize":25, // 每页记录数
+                    "currentPage":1, // 请求第几页
+                    "sort":"ASC" // 排序方式，按 userName 排序，默认升序
+                }
+                , "headers":[]
+            };
+            var url = "/WorkStation/ExportExcel/UserInfoExcel.do";
+            //window.location.href= url+'?params='+JSON.stringify(params);
+
+            window.open(url+'?params='+JSON.stringify(params), "_blank");
+            _global.top.alertSuccess("正在导出，请稍等！",1000,null);
+        });
     }
 
       function submit() {
+          parent.parent.openProcePopups('',100);
           var data=post_sync(null,"/WorkStation/eventDock/updateOwners.do");
           if(data.code=='200'){
               parent.parent.alertSuccess("操作成功!",2000,null);
               _searchEventInfo();
+              parent.parent.stopProce();
           }
           else{
+              parent.parent.stopProce();
               parent.parent.alertSuccess(data.message,2000,null);
           }
       }

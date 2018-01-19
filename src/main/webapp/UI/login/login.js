@@ -57,6 +57,11 @@ $(document).ready(function () {
         $("#sure").bind("click",function () {
             _judgeUser();//对用户名和密码进行判断
         })
+        $("body").keydown(function(event){
+            if(event.keyCode == 13){ //绑定回车
+                _judgeUser();
+            }
+        });
     }
     //点击登录后判断用户名和密码
     function _judgeUser() {

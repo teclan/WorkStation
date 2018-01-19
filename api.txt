@@ -1,0 +1,75 @@
+设备相关接口：
+1、根据用户ID以及设备名称获取设备列表
+接口：http://localhost:8087/IntegratedMM/DeviceMonitor/GetDeviceListByUserId.do
+参数：{"userId":"000001736","devName":"青龙"}
+返回：
+
+2、根据设备ID获取设备详细信息
+接口：http://localhost:8087/IntegratedMM/DeviceMonitor/GetDeviceInfoById.do
+参数：{"deviceId":"000001736"}
+返回：{
+  "message": "成功",
+  "result": {
+    "devId": "000001736",
+    "devName": "惠民村镇银行：安次区支行ATM",
+    "pnlActID": "001736",
+    "areaId": "201407121707409261",
+    "devType": "1",
+    "devModelId": "66",
+    "userId": "000001736",
+    "userName": "惠民村镇银行：安次区支行ATM",
+    "userAddr": "光明西道39号",
+    "contact": "时兵",
+    "cPhone": "",
+    "devLng": 114.4774667,
+    "devlat": 36.63466734563,
+    "pnlAddr": "主机在东墙",
+    "instMan": "刘亮",
+    "devInstDate": "2015-12-03",
+    "instUnit": "廊坊",
+    "devState": 2,
+    "serverId": null,
+    "mapId": null,
+    "fMemo": "",
+    "updatetime": "2016-03-24 18:53:01",
+    "syncTime": null
+  },
+  "code": 1000
+}
+
+3、根据设备ID获取设备播放串
+接口：http://localhost:8087/IntegratedMM/DeviceMonitor/GetUrlByDeviceId.do
+参数：{"deviceId":"170621053732"}
+返回：{
+  "message": "成功",
+  "result": "eeewnull",
+  "code": 1000
+}
+
+4、根据多个设备ID获取多个设备的播放串
+接口：http://localhost:8087/IntegratedMM/DeviceMonitor/GetUrlListByDeviceIds.do
+参数：{"deviceIds":"170621053732,170621100736,170621053733,170621100741"}
+返回：{
+  "message": "成功",
+  "result": {
+    "170621100736": "jjjjjjnull",
+    "170621100741": "jjjjjjnull",
+    "170621053732": "eeewnull",
+    "170621053733": "eeewnull"
+  },
+  "code": 1000
+}
+
+5、根据摄像机id获取摄像机信息(用户名、密码、TUTK、通道)
+接口：http://localhost:8087/IntegratedMM/DeviceMonitor/QueryCameraInfoNew.do
+参数：{"devId":"000001736"}
+返回：{
+  "message": "成功",
+  "result": {
+    "TUTK":"5FK2TU193KDC8SFJ111A",
+    "channelNo":"0",
+    "userName":"admin",
+    "password":"admin"
+  },
+  "code": 1000
+}

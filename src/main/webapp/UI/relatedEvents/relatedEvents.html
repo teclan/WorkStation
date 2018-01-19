@@ -37,8 +37,8 @@
            <div class="line"></div>
            <li id="userZone" style="border-left:0;" href="#userZones">用户防区</li>
            <div class="line"></div>
-           <li id="monitorPoint" style="border-right:0;" href="#monitorSite">监控点</li>
-		   <div class="line"></div>
+           <!--<li id="monitorPoint" style="border-right:0;" href="#monitorSite">监控点</li>
+		   <div class="line"></div>-->
 		   <li id="rdPlan" style="border-right:0;" href="#rdPlanSite">处警预案</li>
 		   <div class="line"></div>
 		   <li id="history_event" style="border-right:0;" href="#con_history">历史事件</li>
@@ -130,8 +130,9 @@
 						<input id="accountAddr" type="text"readonly="readonly" class="input_3"/>
 					</td>
 
-					<td style="text-align: right;"></td>
+					<td style="text-align: right;">无线卡号</td>
 					<td>
+						<input id="pnlHdTel" type="text" readonly="readonly" class="input_right"/>
 					</td>
 				</tr>
 				<tr>
@@ -257,23 +258,7 @@
 		<div style="width:100%;height:520px;display:none; overflow-y: scroll; overflow-x: hidden;"  id="areaMap">
 			<select id="choosemap" class="pic"></select>
 			<div id="Map">
-				<!--<div id="areaImage" class="areaImage">
-
-                </div>-->
 			</div>
-            <div id="table" class="table">
-                <div id="" class="table_title">
-                    <!--<div id="hotTitle_title" class=" hotTitle_title">热点标题</div>
-                    <div id="userId_title" class=" table_title_item">用户编号</div>-->
-                    <div id="roleZoneName_title" class=" table_title_item6">用户防区编号</div>
-                    <div id="atPos_title" class=" table_title_item">防区位置</div>
-                    <div id="snType_title" class=" table_title_item6">探头类型</div>
-                    <div id="isAlarm_title" class=" table_title_item_last">报警状态</div>
-                </div>
-                <div id="table_content" class="table_content">
-
-                </div>
-            </div>
         </div>
 		<div style="width:100%;height:470px;display:none" id="userZones">
 			<div class="tab_content" style="border:1px solid #ededed;  width:calc(100% - 22px);height:calc(100% - 10px);">

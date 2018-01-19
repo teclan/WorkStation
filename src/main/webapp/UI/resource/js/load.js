@@ -12,7 +12,7 @@
 			}
 			var $div = $('<div></div>');
             $div.css({
-				'background-image': "url('/RDAcenter/UI/resource/image/wait2.gif')",
+				'background-image': "url('/WorkStation/UI/resource/image/wait2.gif')",
 				'background-position': '50% 50%',
 				'background-repeat': 'no-repeat',
 				'background-size': '100px',

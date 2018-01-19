@@ -3,6 +3,8 @@ package com.znyw.dao;
 import java.util.List;
 import java.util.Map;
 
+import com.alibaba.fastjson.JSONArray;
+
 public interface EventDockDao {
 
 	boolean pushOwners(Map<String, Object> namesAndValues);
@@ -36,4 +38,6 @@ public interface EventDockDao {
 	List<String> getAlreadyHandledAlarmEventIds(List<String> eventNums);
 	
 	List<Map<String, Object>> getAlarmEventByEventNum(List<String> eventNum);
+	
+	public boolean updateEvent(final JSONArray array);
 }
